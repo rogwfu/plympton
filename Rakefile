@@ -17,10 +17,10 @@ Jeweler::Tasks.new do |gem|
   gem.name = "plympton-refactor"
   gem.homepage = "http://github.com/rogwfu/plympton-refactor"
   gem.license = "MIT"
-  gem.summary = %Q{TODO: one-line summary of your gem}
-  gem.description = %Q{TODO: longer description of your gem}
+  gem.summary = %Q{Reads a YAML dump of a program's disassembly from IDA Pro}
+  gem.description = %Q{A Gem to read program disassembly from a YAML dump.  The YAML dump is generated from an ida pro python script.  This script is included along with this Gem (func.py)}
   gem.email = "roger.seagle@gmail.com"
-  gem.authors = ["rogwfu"]
+  gem.authors = ["Roger Seagle"]
   # dependencies defined in Gemfile
 end
 Jeweler::RubygemsDotOrgTasks.new
