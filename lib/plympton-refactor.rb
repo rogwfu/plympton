@@ -1,7 +1,8 @@
 require 'yaml'
 require 'gsl'
+
 Dir[File.dirname(__FILE__) + "/plympton/*.rb"].each do |file|
-	require File.basename(file, File.extname(file))
+	require "plympton/#{File.basename(file, File.extname(file))}"
 end
 
 # Add in the YAML parsing hooks
