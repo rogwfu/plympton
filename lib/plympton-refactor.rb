@@ -1,9 +1,9 @@
 require 'yaml'
 require 'gsl'
-Dir[File.dirname(__FILE__) + "/plympton/*.rb"].each do |file|
-	  puts file
-	require File.basename(file, File.extname(file))
-end
+#Dir[File.dirname(__FILE__) + "/plympton/*.rb"].each do |file|
+	  puts "hey" 
+#	require File.basename(file, File.extname(file))
+#end
 #require 'plympton/idaprogram'
 #require 'plympton/idafunction'
 #require 'plympton/idachunk'
