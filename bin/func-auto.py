@@ -1,11 +1,10 @@
-# 
-# To run auto-analysis: /Applications/ida/idaq.app/Contents/MacOS/idaq -A -OIDAPython:/Users/username/Desktop/dissertation/plympton/bin/func-auto.py ~/Desktop/dissertation/sharedLibrary/tlvparser.dylib 
-#
 import yaml
+import idascript
+import idc
 from sets import Set
 
-class IdaProgram(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/IdaProgram'
+class Program(yaml.YAMLObject):
+    yaml_tag = u'!fuzz.io/Program'
     def __init__(self, textSegmentStart, textSegmentEnd):
         self.disName = GetInputFilePath() 
         self.functionList = []
@@ -29,7 +28,7 @@ class IdaProgram(yaml.YAMLObject):
         # Iterate through all of the functions
         #
         for fn in Functions(self.textSegmentStart, self.textSegmentEnd):
-            tmp = IdaFunction(fn)
+            tmp = Function(fn)
             if not tmp.isImport:
         	    self.functionList.append(tmp)
             else:
@@ -45,10 +44,9 @@ class IdaProgram(yaml.YAMLObject):
 #
 # Create a class for a function
 #
-class IdaFunction(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/IdaFunction'
+class Function(yaml.YAMLObject):
+    yaml_tag = u'!fuzz.io/Function'
     def __init__(self, effectiveAddress):
-        global logfile
         self.name = Name(effectiveAddress) 
         self.argSize = 0
         self.numArgs = 0
@@ -94,13 +92,13 @@ class IdaFunction(yaml.YAMLObject):
         self.frameSize          = idaapi.get_frame_size(funcStruct)
         self.retSize            = idaapi.get_frame_retsize(funcStruct)
 
-        logfile.write("=========================================\n")
-        logfile.write("Frame Size %d\n" % self.frameSize)
-        logfile.write("EIP Return Size %d\n" % self.retSize)
-        logfile.write("Saved Registers Size %d\n" % self.savedRegSize)
-        logfile.write("Locals Size %d\n" % self.localVarSize)
-        logfile.write("=========================================\n")
-        logfile.write("Function name: %s\n" % self.name)
+        print("=========================================")
+        print("Frame Size %d" % self.frameSize)
+        print("EIP Return Size %d" % self.retSize)
+        print("Saved Registers Size %d" % self.savedRegSize)
+        print("Locals Size %d" % self.localVarSize)
+        print("=========================================")
+        print("Function name: %s" % self.name)
 
         #
         # Fixup numbers for arguments and local variables
@@ -172,11 +170,7 @@ class IdaFunction(yaml.YAMLObject):
         Calculate the total size of arguments, # of arguments and # of local variables. Update the internal class member
         variables appropriately. Taken directly from paimei
         '''
-        global logfile
-
-        #
         # Initialize some local variables
-        #
         args = {}
         local_vars = {} 
 
@@ -199,14 +193,14 @@ class IdaFunction(yaml.YAMLObject):
 
             # grab the name of the current local variable or argument.
             name = idaapi.get_member_name(frameStruct.get_member(i).id)
-            logfile.write("=============================\n")
-            logfile.write("Name: %s\n" % name)
+            print("=============================")
+            print("Name: %s" % name)
 #            print "Agument Boundary: %d" % argument_boundary
 #            print "Frame offset: %d" % frame_offset
-            logfile.write("End offset: %d\n" % end_offset)
-            logfile.write("Begin Offset: %d\n" % begin_offset)
-#            logfile.write("Frame offset: %d\n" % frame_offset)
-            logfile.write("=============================\n")
+            print("End offset: %d" % end_offset)
+            print("Begin Offset: %d" % begin_offset)
+#            print("Frame offset: %d\n" % frame_offset)
+            print("=============================")
 
             if name == None:
                 continue
@@ -248,15 +242,15 @@ class IdaFunction(yaml.YAMLObject):
 
         while status:
             chunk = iterator.chunk()
-            tmp = IdaChunk(chunk)
+            tmp = Chunk(chunk)
             self.chunkList.append(tmp)
             status = iterator.next()
 
 #
 # Create a class for a basic block
 #
-class IdaChunk(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/IdaChunk'
+class Chunk(yaml.YAMLObject):
+    yaml_tag = u'!fuzz.io/Chunk'
     def __init__(self, chunk):
         self.startEA = chunk.startEA 
         self.endEA  = chunk.endEA 
@@ -303,12 +297,12 @@ class IdaChunk(yaml.YAMLObject):
 
             # if the current instruction is a ret instruction, end the current node at ea.
             if idaapi.is_ret_insn(effectiveAddress):
-                tmp = IdaBlock(block_start, effectiveAddress, branchesTo, branchesFrom)
+                tmp = Block(block_start, effectiveAddress, branchesTo, branchesFrom)
                 self.blockList.append(tmp)
                 block_start = next_ea
 
             elif branchesTo and block_start != effectiveAddress:
-                tmp = IdaBlock(block_start, effectiveAddress, branchesTo, branchesFrom)
+                tmp = Block(block_start, effectiveAddress, branchesTo, branchesFrom)
                 self.blockList.append(tmp)
 
                 # start a new block at ea.
@@ -316,7 +310,7 @@ class IdaChunk(yaml.YAMLObject):
 
             # if there is a branch from the current instruction, end the current node at ea.
             elif branchesFrom:
-                tmp = IdaBlock(block_start, effectiveAddress, branchesTo, branchesFrom)
+                tmp = Block(block_start, effectiveAddress, branchesTo, branchesFrom)
                 self.blockList.append(tmp)
 
                 # start a new block at the next ea
@@ -389,8 +383,8 @@ class IdaChunk(yaml.YAMLObject):
 #
 # Create a class for a basic block
 #
-class IdaBlock(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/IdaBlock'
+class Block(yaml.YAMLObject):
+    yaml_tag = u'!fuzz.io/Block'
     def __init__(self, effectiveAddressStart, effectiveAddressEnd, branchesTo, branchesFrom): 
         self.startEA = hex(effectiveAddressStart)
         self.endEA = hex(effectiveAddressEnd)
@@ -411,52 +405,28 @@ class IdaBlock(yaml.YAMLObject):
         heads = [head for head in Heads(effectiveAddressStart, effectiveAddressEnd + 1) if isCode(GetFlags(head))]
         self.numInstructions = len(heads)
 
-
-#
-# Parse command line options
-#
-dumpDir = "/Users/rseagle/Desktop/dissertation/disassemblies/"
-
-#
 # Wait for the analysis to stop
-#
 idaapi.autoWait()
 
-#
 # Create the filenames to dump and log
-#
-yamlFilename  = dumpDir + GetInputFile() + ".fz" 
-debugLog = dumpDir + GetInputFile() + ".debug.log"
+yamlFilename  = os.environ['PWD'] + "/" + GetInputFile() + ".fz" 
 
-#
 # Open the file
-#
 yamlFile = open(yamlFilename, 'w')
-logfile = open(debugLog, 'w')
 
-#
 # Get the start and end of the text section
-#
 textSegmentSelector = SegByName("__text")
 textSegmentStart = SegByBase(textSegmentSelector)
 textSegmentEnd = SegEnd(textSegmentStart)
 
-#
 # Pull out all the information
-#
-disassembledProgram = IdaProgram(textSegmentStart, textSegmentEnd)
+disassembledProgram = Program(textSegmentStart, textSegmentEnd)
 
-#
 # Dump the disassembled program info in a portable format
-#
 yaml.dump(disassembledProgram, yamlFile, default_flow_style=False)
 
-#
 # Be nice close the file
-#
 yamlFile.close()
 
-#
 # Exit IDA Pro
-#
 Exit(0)
