@@ -14,6 +14,7 @@ module Plympton
 			@attributes = YAML::load(File.open(yamlDisassembly))	
 			#puts @attributes.keys()
 			@attributes["name"].chomp!()
+			puts @attributes["numBlocks"]
 		end
 	end
 end

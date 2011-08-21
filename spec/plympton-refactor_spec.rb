@@ -13,4 +13,20 @@ describe "PlymptonRefactor" do
 	it "should have 409 functions" do
 		@object.attributes["numFunctions"].should == 409 
 	end
+
+	it "should have the text section starting at 0xf60" do
+		@object.attributes["textSegmentStart"].should == "0xf60" 
+	end
+
+	it "should have the text section ending at 0x44354" do
+		@object.attributes["textSegmentEnd"].should == "0x44354" 
+	end
+
+	it "should not have any imports" do
+		@object.attributes["numImports"] == 0
+	end
+
+	it "should have 15496 number of blocks" do
+		@object.attributes["numBlocks"] == 15496	
+	end
 end
