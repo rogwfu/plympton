@@ -12,7 +12,8 @@ module Plympton
 
 			# Unserialize the YAML disassembly
 			@attributes = YAML::load(File.open(yamlDisassembly))	
-			@attributes.name.chomp!()
+			#puts @attributes.keys()
+			@attributes["name"].chomp!()
 		end
 	end
 end
