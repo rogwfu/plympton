@@ -2,10 +2,10 @@ import yaml
 import idascript
 import idc
 
-class Program(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/Program'
+class Object(yaml.YAMLObject):
+    yaml_tag = u'!fuzz.io/Object'
     def __init__(self, textSegmentStart, textSegmentEnd):
-        self.disName = GetInputFilePath() 
+        self.name = GetInputFilePath() 
         self.functionList = []
         self.importList = []
         self.textSegmentStart = textSegmentStart
@@ -419,10 +419,10 @@ textSegmentStart = SegByBase(textSegmentSelector)
 textSegmentEnd = SegEnd(textSegmentStart)
 
 # Pull out all the information
-disassembledProgram = Program(textSegmentStart, textSegmentEnd)
+disassembledObject = Object(textSegmentStart, textSegmentEnd)
 
-# Dump the disassembled program info in a portable format
-yaml.dump(disassembledProgram, yamlFile, default_flow_style=False)
+# Dump the disassembled Object info in a portable format
+yaml.dump(disassembledObject, yamlFile, default_flow_style=False)
 
 # Be nice close the file
 yamlFile.close()

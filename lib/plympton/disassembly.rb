@@ -1,6 +1,8 @@
 module Plympton
 	# Class responsible for working with a disassembly
 	class Disassembly
+		attr_accessor	:attributes
+
 		# @param [String] Path to the YAML serialized disassembly
 		def initialize(yamlDisassembly)
 			# Check for existence of the file
@@ -9,7 +11,8 @@ module Plympton
 			end
 
 			# Unserialize the YAML disassembly
-			@disassembly = YAML::load(File.open(yamlDisassembly))	
+			@attributes = YAML::load(File.open(yamlDisassembly))	
+			@attributes.name.chomp!()
 		end
 	end
 end
