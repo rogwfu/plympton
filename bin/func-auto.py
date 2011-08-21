@@ -1,7 +1,6 @@
 import yaml
 import idascript
 import idc
-from sets import Set
 
 class Program(yaml.YAMLObject):
     yaml_tag = u'!fuzz.io/Program'
@@ -126,8 +125,8 @@ class Function(yaml.YAMLObject):
         f_start = function_ea
         f_end = FindFuncEnd(function_ea)
 
-        edges = Set()
-        boundaries = Set((f_start,))
+        edges = set([])
+        boundaries = set((f_start,))
     
         # For each defined element in the function.
         for head in Heads(f_start, f_end):
@@ -138,7 +137,7 @@ class Function(yaml.YAMLObject):
 				# Get the references made from the current instruction
 				# and keep only the ones local to the function.
 				refs = CodeRefsFrom(head, 0)
-				refs = Set(filter(lambda x: x>=f_start and x<=f_end, refs))
+				refs = set(filter(lambda x: x>=f_start and x<=f_end, refs))
 
 				if refs:
 					# If the flow continues also to the next (address-wise)
@@ -151,7 +150,7 @@ class Function(yaml.YAMLObject):
 						refs.add(next_head)
                 
 					# Update the boundaries found so far.
-					boundaries.union_update(refs)
+					boundaries.update(refs)
                             
 					# For each of the references found, and edge is
 					# created.
