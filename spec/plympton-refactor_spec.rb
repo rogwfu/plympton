@@ -8,26 +8,26 @@ describe "PlymptonRefactor" do
 	end
 
 	it "should have the correct disassembly name (/usr/lib/libauto.dylib)" do
-		@object.attributes["name"].should == "/usr/lib/libauto.dylib"
+		@object.attributes.name.should == "/usr/lib/libauto.dylib"
 	end
 
 	it "should have 409 functions" do
-		@object.attributes["numFunctions"].should == 409 
+		@object.attributes.numFunctions.should == 409 
 	end
 
 	it "should have the text section starting at 0xf60" do
-		@object.attributes["textSegmentStart"].should == "0xf60" 
+		@object.attributes.textSegmentStart.should == "0xf60" 
 	end
 
 	it "should have the text section ending at 0x44354" do
-		@object.attributes["textSegmentEnd"].should == "0x44354" 
+		@object.attributes.textSegmentEnd.should == "0x44354" 
 	end
 
 	it "should not have any imports" do
-		@object.attributes["numImports"] == 0
+		@object.attributes.numImports == 0
 	end
 
 	it "should have 15496 number of blocks" do
-		@object.attributes["numBlocks"] == 15496	
+		@object.attributes.numBlocks == 15496	
 	end
 end
