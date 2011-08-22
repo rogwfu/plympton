@@ -3,7 +3,7 @@ import idascript
 import idc
 
 class Object(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/Object'
+    yaml_tag = u'!fuzz.io,2011/Object'
     def __init__(self, textSegmentStart, textSegmentEnd):
         self.name = GetInputFilePath() 
         self.functionList = []
@@ -44,7 +44,7 @@ class Object(yaml.YAMLObject):
 # Create a class for a function
 #
 class Function(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/Function'
+    yaml_tag = u'!fuzz.io,2011/Function'
     def __init__(self, effectiveAddress):
         self.name = Name(effectiveAddress) 
         self.argSize = 0
@@ -249,7 +249,7 @@ class Function(yaml.YAMLObject):
 # Create a class for a basic block
 #
 class Chunk(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/Chunk'
+    yaml_tag = u'!fuzz.io,2011/Chunk'
     def __init__(self, chunk):
         self.startEA = chunk.startEA 
         self.endEA  = chunk.endEA 
@@ -383,7 +383,7 @@ class Chunk(yaml.YAMLObject):
 # Create a class for a basic block
 #
 class Block(yaml.YAMLObject):
-    yaml_tag = u'!fuzz.io/Block'
+    yaml_tag = u'!fuzz.io,2011/Block'
     def __init__(self, effectiveAddressStart, effectiveAddressEnd, branchesTo, branchesFrom): 
         self.startEA = hex(effectiveAddressStart)
         self.endEA = hex(effectiveAddressEnd)
