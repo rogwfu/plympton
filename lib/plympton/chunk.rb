@@ -5,6 +5,7 @@ module Plympton
         attr_accessor   :startEA, :endEA, :blockList, :numBlocks
 
         # Defines the objects YAML tag
+		# @return [String] A string signifying the start of an object of this class
         def to_yaml_type
             "!fuzz.io,2011/Chunk"
         end

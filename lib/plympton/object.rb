@@ -8,6 +8,7 @@ module Plympton
 		attr_accessor   :functionHash
 
 		# Defines the objects YAML tag
+		# @return [String] A string signifying the start of an object of this class
 		def to_yaml_type
 			"!fuzz.io,2011/Object"
 		end
