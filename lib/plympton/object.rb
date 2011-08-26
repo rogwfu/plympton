@@ -19,13 +19,6 @@ module Plympton
 			init_function_hash()
 		end
 
-		def self.define_average(variable)
-			# Dynamically define an average function
-			define_method(variable + "a") do
-
-			end
-		end
-
 		# @param [Hash] The functions observed executed during a trace
 		def sum(functionsHit)
 			result = BigDecimal("0")

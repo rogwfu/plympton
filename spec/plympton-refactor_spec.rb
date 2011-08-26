@@ -30,4 +30,17 @@ describe "PlymptonRefactor" do
 	it "should have 15496 number of blocks" do
 		@object.attributes.numBlocks == 15496	
 	end
+
+	['A','B','C','D','E','F','G'].each do |variable|
+		it "should respond to sum function #{variable}s" do
+			@object.attributes.should respond_to(variable + "s") 
+		end
+	end
+
+	['A','B','C','D','E','F','G'].each do |variable|
+		it "should respond to average function #{variable}a" do
+			@object.attributes.should respond_to(variable + "a") 
+		end
+	end
+
 end
