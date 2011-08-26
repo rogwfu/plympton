@@ -26,22 +26,42 @@ module Plympton
 			end
 		end
 
+		# @param [Hash] The functions observed executed during a trace
+		def sum(functionsHit)
+			result = BigDecimal("0")
+		#	if(functionsHit !=nil and functionsHit.length() > 0) then
+		#		functionsHit.each do |offset, numberTimesExecuted|
+		#			result = yield(result, @functionHash[offset], numberTimesExecuted)
+		#		end
+		#	end
+			return(result)
+		end
+
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def As(functionsHit)
 			puts "Sum function: A"
+#			sum(functionsHit) do |result, function, timesExecuted|
+#				result + function.numArgs * timesExecuted 
+#			end
 			return(BigDecimal.new("10"))
 		end
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Bs(functionsHit)
 			puts "Sum function: B"
+#			sum(functionsHit) do |result, function, timesExecuted|
+#				result + function.numArgs * timesExecuted 
+#			end
 			return(BigDecimal.new("10"))
 		end
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Cs(functionsHit)
 			puts "Sum function: C"
 			return(BigDecimal.new("10"))
@@ -49,6 +69,7 @@ module Plympton
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Ds(functionsHit)
 			puts "Sum function: D"
 			return(BigDecimal.new("10"))
@@ -56,6 +77,7 @@ module Plympton
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Es(functionsHit)
 			puts "Sum function: E"
 			return(BigDecimal.new("10"))
@@ -63,6 +85,7 @@ module Plympton
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Fs(functionsHit)
 			puts "Sum function: F"
 			return(BigDecimal.new("10"))
@@ -70,6 +93,7 @@ module Plympton
 
 		# Returns the sum number of arguments passed to all functions executed
 		# @param [Hash] The functions observed executed during a trace
+		# @returns [BigDecimal]
 		def Gs(functionsHit)
 			puts "Sum function: G"
 			return(BigDecimal.new("10"))
@@ -98,9 +122,6 @@ module Plympton
 		def init_block_hash()
 
 		end
-
-		
-
 
 		# Convenience method for printing a chromosome
 		# @return [String] A string representation of the chromosome object
