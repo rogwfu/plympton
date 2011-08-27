@@ -19,78 +19,105 @@ module Plympton
 			init_function_hash()
 		end
 
-		# @param [Hash] The functions observed executed during a trace
-		def sum(functionsHit)
-			result = BigDecimal("0")
-		#	if(functionsHit !=nil and functionsHit.length() > 0) then
-		#		functionsHit.each do |offset, numberTimesExecuted|
-		#			result = yield(result, @functionHash[offset], numberTimesExecuted)
-		#		end
-		#	end
-			return(result)
+		def self.define_sum_avg(variable, attribute)
+			sum_function = variable + "s"
+			define_method(sum_function.to_sym()) do |functionsHit|
+				puts "Sum function: " + sum_function
+				result = BigDecimal("0")
+				if(functionsHit !=nil and functionsHit.length() > 0) then
+					# Iterate through the function's hit hash
+					functionsHit.each do |offset, numberTimesExecuted|
+						result = result + @functionHash[offset].attribute * numberTimesExecuted
+					end
+				end
+				return(result)
+			end
+
+			# Define the average function
+			avg_function = variable + "a"
+			define_method(avg_function.to_sym()) do |functionsHit|
+				puts "Average function: " + avg_function
+				send(sum_function.to_sym(functionsHit))/functionsHit.length()
+			end
 		end
 
-		# Returns the sum number of arguments passed to all functions executed
+		# Define all the sum and average functions
+		{"A" => :a, "B" => :a,"C" => :a,"D" => :a,"E" => :a,"F" => :a,"G" => :a}.each do |variable, attribute|
+			define_sum_avg(variable, attribute)
+		end
+
 		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def As(functionsHit)
-			puts "Sum function: A"
+#		def sum(functionsHit)
+#			result = BigDecimal("0")
+#			if(functionsHit !=nil and functionsHit.length() > 0) then
+#				functionsHit.each do |offset, numberTimesExecuted| # hash key is offset, value = numberTimesExecuted
+#					result = yield(result, @functionHash[offset], numberTimesExecuted)
+#				end
+#			end
+#			return(result)
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def As(functionsHit)
+#			puts "Sum function: A"
 #			sum(functionsHit) do |result, function, timesExecuted|
 #				result + function.numArgs * timesExecuted 
 #			end
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Bs(functionsHit)
-			puts "Sum function: B"
-#			sum(functionsHit) do |result, function, timesExecuted|
-#				result + function.numArgs * timesExecuted 
-#			end
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Cs(functionsHit)
-			puts "Sum function: C"
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Ds(functionsHit)
-			puts "Sum function: D"
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Es(functionsHit)
-			puts "Sum function: E"
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Fs(functionsHit)
-			puts "Sum function: F"
-			return(BigDecimal.new("10"))
-		end
-
-		# Returns the sum number of arguments passed to all functions executed
-		# @param [Hash] The functions observed executed during a trace
-		# @returns [BigDecimal]
-		def Gs(functionsHit)
-			puts "Sum function: G"
-			return(BigDecimal.new("10"))
-		end
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Bs(functionsHit)
+#			puts "Sum function: B"
+##			sum(functionsHit) do |result, function, timesExecuted|
+##				result + function.numArgs * timesExecuted 
+##			end
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Cs(functionsHit)
+#			puts "Sum function: C"
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Ds(functionsHit)
+#			puts "Sum function: D"
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Es(functionsHit)
+#			puts "Sum function: E"
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Fs(functionsHit)
+#			puts "Sum function: F"
+#			return(BigDecimal.new("10"))
+#		end
+#
+#		# Returns the sum number of arguments passed to all functions executed
+#		# @param [Hash] The functions observed executed during a trace
+#		# @returns [BigDecimal]
+#		def Gs(functionsHit)
+#			puts "Sum function: G"
+#			return(BigDecimal.new("10"))
+#		end
 
 		# Catch all the average variables since their code is similar
 		def method_missing(name, *args)
