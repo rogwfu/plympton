@@ -31,6 +31,18 @@ describe "PlymptonRefactor" do
 		@object.attributes.numBlocks == 15496	
 	end
 
+	it "should have a function hash" do
+		@object.attributes.functionHash.should be_an_instance_of(Hash)
+	end
+
+	it "should have a function hash keyed on hex addresses" do
+		@object.attributes.functionHash.should have_key("0x10a0") 
+	end
+
+	it "store functions in a function hash" do
+		@object.attributes.functionHash["0x10a0"].should be_an_instance_of(Plympton::Function)
+	end
+
 	['A','B','C','D','E','F','G'].each do |variable|
 		it "should respond to sum function #{variable}s" do
 			@object.attributes.should respond_to(variable + "s") 

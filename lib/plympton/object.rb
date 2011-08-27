@@ -130,17 +130,12 @@ module Plympton
 
 		private
 
-		# Convenience method for creating a lookup hash for functions
+		# Convenience method for creating a lookup hash for functions based on hex address
 		def init_function_hash()
 			@functionHash = Hash.new()
 			@functionList.each do |function|
 				@functionHash[function.startAddress] = function
 			end
-		end
-
-		# Convenience method for creating a lookup hash for blocks 
-		def init_block_hash()
-
 		end
 
 		# Convenience method for printing a chromosome

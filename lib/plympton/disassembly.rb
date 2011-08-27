@@ -3,6 +3,8 @@ module Plympton
 	class Disassembly
 		attr_accessor	:attributes
 
+		# Create an instance of the disassembly class
+		# Reads in a YAML serialized disassembly
 		# @param [String] Path to the YAML serialized disassembly
 		def initialize(yamlDisassembly)
 			
@@ -13,14 +15,7 @@ module Plympton
 
 			# Unserialize the YAML disassembly
 			@attributes = YAML.load(File.open(yamlDisassembly))	
-
-			# 
-#			@attributes.setup()
-#			@attributes.hello()
-#			puts @attributes.class()
-			#puts @attributes.keys()
-			#@attributes["name"].chomp!()
-			#puts @attributes["numBlocks"]
+			@attributes.setup()
 		end
 	end
 end
