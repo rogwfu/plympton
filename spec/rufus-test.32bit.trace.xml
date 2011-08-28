@@ -1,0 +1,50 @@
+<?xml version="1.0"?>
+
+<valgrindoutput>
+
+<protocolversion>4</protocolversion>
+<protocoltool>rufus</protocoltool>
+
+<preamble>
+  <line>Rufus, Tool to aide in GA Fuzzing</line>
+  <line>Copyright (C) 2002-2010, and GNU GPL'd, by Roger Seagle.</line>
+  <line>Using Valgrind-3.6.1 and LibVEX; rerun with -h for copyright info</line>
+  <line>Command: /Applications/Preview.app/Contents/MacOS/Preview</line>
+</preamble>
+
+<pid>15409</pid>
+<ppid>74609</ppid>
+<tool>rufus</tool>
+
+<args>
+  <vargv>
+    <exe>/private/tmp/trunk/./inst/bin/valgrind</exe>
+    <arg>--tool=rufus</arg>
+    <arg>--object=/usr/lib/libauto.dylib</arg>
+    <arg>--xml=yes</arg>
+    <arg>--xml-file=test-trace.xml</arg>
+  </vargv>
+  <argv>
+    <exe>/Applications/Preview.app/Contents/MacOS/Preview</exe>
+  </argv>
+</args>
+
+<hit><funcname>markov:</funcname><offset>0</offset></hit>
+<status>
+  <state>RUNNING</state>
+  <time>00:00:00:00.009 </time>
+</status>
+
+<hit><funcname>auto_zone_start_monitor</funcname><offset>0x1080</offset></hit>
+<hit><funcname>markov:gc_init+377</funcname><offset>0xbb6790</offset></hit>
+<hit><funcname>auto_zone_set_class_list</funcname><offset>0x1090</offset></hit>
+<hit><funcname>markov:map_images_nolock+1319</funcname><offset>0xbcc851</offset></hit>
+
+<status>
+  <state>FINISHED</state>
+  <time>00:00:00:52.708 </time>
+</status>
+
+
+</valgrindoutput>
+
