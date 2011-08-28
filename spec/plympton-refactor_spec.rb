@@ -57,6 +57,7 @@ describe "PlymptonRefactor" do
 
 	it "should parse well formed valgrind rufus traces" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.functionHitTrace.size.should == 2
 	end
 
 #	functionHitTrace
