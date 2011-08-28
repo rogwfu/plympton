@@ -3,11 +3,13 @@ module Plympton
 	class Disassembly
 		attr_accessor	:attributes
 		attr_accessor	:functionHitTrace
+		attr_accessor	:expression
 
 		# Create an instance of the disassembly class
 		# Reads in a YAML serialized disassembly
 		# @param [String] Path to the YAML serialized disassembly
-		def initialize(yamlDisassembly)
+		# @param [String] A mathematical expression for object evaluation
+		def initialize(yamlDisassembly, literalExpression="")
 
 			# Check for existence of the file
 			if(!File.exists?(yamlDisassembly)) then
@@ -20,6 +22,11 @@ module Plympton
 
 			# Allocate a hash for function hit tracing
 			@functionHitTrace = Hash.new()
+
+			# Allocate an expression to solve
+			@expression = Solver::Parser.new(Solver::Lexer.new(literalExpression))
+			@expression.expressionCache = literalExpression
+			@expression.objectCache = @attributes
 		end
 
 		# Function to process hit tracing recorded by Valgrind tools (rufus and callgrind)

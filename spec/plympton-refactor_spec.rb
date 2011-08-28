@@ -4,7 +4,7 @@ require 'yaml'
 describe "PlymptonRefactor" do
 	# Read in a disassembly before running tests
 	before(:all) do
-		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libauto.dylib.fz"))
+		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libauto.dylib.fz"), "As + Ba")
 	end
 
 	it "should have the correct disassembly name (/usr/lib/libauto.dylib)" do
@@ -81,4 +81,7 @@ describe "PlymptonRefactor" do
 		@object.functionHitTrace["0x1090"].should == 1 
 	end
 
+	it "cache an equation for the solver" do 
+		@object.expression.expressionCache.should == "As + Ba"	
+	end
 end
