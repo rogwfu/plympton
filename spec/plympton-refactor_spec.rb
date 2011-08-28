@@ -60,5 +60,25 @@ describe "PlymptonRefactor" do
 		@object.functionHitTrace.size.should == 2
 	end
 
-#	functionHitTrace
+	it "should parsed a hit for function auto_zone_start_monitor" do
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.attributes.functionHash["0x1080"].name.should == "_auto_zone_start_monitor" 
+	end
+
+	it "should have hit function auto_zone_start_monitor once" do
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.functionHitTrace["0x1080"].should == 1 
+	end
+
+
+	it "should parsed a hit for function auto_zone_set_class_list" do
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.attributes.functionHash["0x1090"].name.should == "_auto_zone_set_class_list" 
+	end
+
+	it "should have hit function auto_zone_set_class_list once" do
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.functionHitTrace["0x1090"].should == 1 
+	end
+
 end

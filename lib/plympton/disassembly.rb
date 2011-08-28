@@ -37,8 +37,11 @@ module Plympton
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
 				if(@attributes.functionHash.has_key?(functionOffset)) then
-					@functionHitTrace[functionOffset] = 1 if(!@functionHitTrace.has_key?(functionOffset))
-					@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + 1 
+					if(!@functionHitTrace.has_key?(functionOffset)) then
+						@functionHitTrace[functionOffset] = 1 
+					else
+						@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + 1 
+					end
 				end
 
 				# Parse all the functions this function called
@@ -46,8 +49,11 @@ module Plympton
 					calleeOffset = callee.search("offset").first().inner_text()
 					numberOfCalls = callee.search("numberOfCalls").first().inner_text().to_i()
 					if(@attributes.functionHash.has_key?(calleeOffset)) then
-						@functionHitTrace[functionOffset] = numberOfCalls if(!@functionHitTrace.has_key?(functionOffset))
-						@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + numberOfCalls 
+						if(!@functionHitTrace.has_key?(functionOffset)) then
+							@functionHitTrace[functionOffset] = numberOfCalls 
+						else
+							@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + numberOfCalls 
+						end
 					end
 				end
 			end
