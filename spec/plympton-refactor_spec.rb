@@ -109,18 +109,18 @@ describe "PlymptonRefactor" do
 
 	# Test the sum functions
 	zero = BigDecimal("0")
-	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => BigDecimal("20"),'F' => BigDecimal("40"),'G' => BigDecimal("5")}.each do |variable, result|
 		it "should correctly calculate the sum for #{variable}s" do
 			@object.initialize_solver(variable + "s")
-			@object.evaluate().should == zero
+			@object.evaluate().should == result 
 		end
 	end
 
 	# Test the average functions
-	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => (BigDecimal("20")/BigDecimal("5")),'F' => BigDecimal("40")/BigDecimal("5"),'G' => BigDecimal("5")/BigDecimal("5")}.each do |variable, result|
 		it "should correctly calculate the average for #{variable}a" do
 			@object.initialize_solver(variable + "a")
-			@object.evaluate().should == zero 
+			@object.evaluate().should == result 
 		end
 	end
 
