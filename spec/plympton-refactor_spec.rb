@@ -124,4 +124,40 @@ describe "PlymptonRefactor" do
 		end
 	end
 
+	# Test the multiplication operator
+	it "should correctly calculate Fs * Ea" do
+			@object.initialize_solver("Fs * Ea")
+			@object.evaluate().should == BigDecimal("160")
+	end
+
+	it "should correctly calculate Fs/Ea" do
+			@object.initialize_solver("Fs/Ea")
+			@object.evaluate().should == BigDecimal("10")
+	end
+
+	it "should correctly calculate Fs * Ea/4" do
+		@object.initialize_solver("Fs * Ea/4")
+		@object.evaluate().should == BigDecimal("40")
+	end
+
+	it "should correctly calculate Fs * (Ea/2 + 1)" do
+		@object.initialize_solver("Fs * (Ea/2 + 1) ")
+		@object.evaluate().should == BigDecimal("120")
+	end
+
+	it "should correctly calculate (Ea/4)^2" do
+		@object.initialize_solver("(Ea/4)^2")
+		@object.evaluate().should == BigDecimal("1")
+	end
+
+	it "should correctly calculate (Fs/10)^3" do
+		@object.initialize_solver("(Fs/10)^3")
+		@object.evaluate().should == BigDecimal("64")
+	end
+
+	it "should correctly ln(10)" do
+		@object.initialize_solver("ln(10)")
+		@object.evaluate().should == BigDecimal("2.302585092994045661965631595164862")
+	end
+
 end
