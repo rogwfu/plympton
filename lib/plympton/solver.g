@@ -48,11 +48,6 @@ log returns [result]
   | r=exp { $result = $r.result }
   ;
 
-squarert returns [result]
-  : 'sqrt' r=exp { $result = BigMath.sqrt(r, 2)}
-  | r=exp { $result = $r.result }
-  ;
-
 exp returns [result]
   : r=atom ( '^' r2=atom { $r.result **= $r2.result.to_i() } )? { $result = $r.result }
   ;

@@ -124,7 +124,11 @@ describe "PlymptonRefactor" do
 		end
 	end
 
-	# Test the multiplication operator
+	it "should correctly calculate Fs - Ea" do
+			@object.initialize_solver("Fs - Ea")
+			@object.evaluate().should == BigDecimal("36")
+	end
+
 	it "should correctly calculate Fs * Ea" do
 			@object.initialize_solver("Fs * Ea")
 			@object.evaluate().should == BigDecimal("160")

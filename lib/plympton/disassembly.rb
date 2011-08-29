@@ -28,7 +28,6 @@ module Plympton
 		# @returns [BigDecimal] The results of the evaluated expression
 		def evaluate()
 			result = @expression.evaluate()
-			puts "Result: #{result.to_s("F")}"
 			initialize_solver(@expression.expressionCache)
 			return(result)
 		end
