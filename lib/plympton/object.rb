@@ -5,6 +5,7 @@ module Plympton
 		attr_accessor   :textSegmentStart, :textSegmentEnd, :functionList, :importList, :numFunctions, :numImports, :numBlocks, :name 
 
 		# Class Attributes not imported via YAML
+		attr_accessor	:runtime
 		attr_accessor   :functionHash
 		attr_accessor	:functionHitTrace
 

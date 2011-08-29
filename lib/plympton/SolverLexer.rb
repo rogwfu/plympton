@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-08-29 14:40:37
+# Generated at: 2011-08-29 14:53:04
 # 
 
 # ~~~> start load path setup
@@ -327,8 +327,8 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 69:11: ( DIGIT )+
-      # at file 69:11: ( DIGIT )+
+      # at line 76:11: ( DIGIT )+
+      # at file 76:11: ( DIGIT )+
       match_count_1 = 0
       while true
         alt_1 = 2
@@ -340,7 +340,7 @@ module Solver
         end
         case alt_1
         when 1
-          # at line 69:12: DIGIT
+          # at line 76:12: DIGIT
           digit!
 
         else
@@ -375,7 +375,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 70:12: INT '.' INT
+      # at line 77:12: INT '.' INT
       int!
       match( 0x2e )
       int!
@@ -401,10 +401,10 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 71:13: 'A' .. 'G' ( MODIFIER )
+      # at line 78:13: 'A' .. 'G' ( MODIFIER )
       match_range( 0x41, 0x47 )
-      # at line 71:21: ( MODIFIER )
-      # at line 71:22: MODIFIER
+      # at line 78:21: ( MODIFIER )
+      # at line 78:22: MODIFIER
       modifier!
 
 
@@ -429,7 +429,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 72:14: 'R' .. 'W'
+      # at line 79:14: 'R' .. 'W'
       match_range( 0x52, 0x57 )
 
       
@@ -453,8 +453,8 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 73:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
-      # at file 73:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+      # at line 80:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+      # at file 80:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -509,7 +509,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 79:18: '0' .. '9'
+      # at line 86:18: '0' .. '9'
       match_range( 0x30, 0x39 )
 
     ensure

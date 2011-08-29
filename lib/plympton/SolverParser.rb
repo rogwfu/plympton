@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-08-29 14:40:36
+# Generated at: 2011-08-29 14:53:04
 # 
 
 # ~~~> start load path setup
@@ -476,6 +476,13 @@ module Solver
           a = match( UNMODVAR, TOKENS_FOLLOWING_UNMODVAR_IN_atom_390 )
           # --> action
            
+          						case a.text 
+          							when 'R'
+          								result = @objectCache.runtime 
+          							else
+          								result = BigDecimal("0")
+          							end
+          					 
           # <-- action
 
         end

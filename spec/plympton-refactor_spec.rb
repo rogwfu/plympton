@@ -164,4 +164,19 @@ describe "PlymptonRefactor" do
 		@object.evaluate().should == BigDecimal("2.302585092994045661965631595164862")
 	end
 
+	it "should default runtime to zero" do
+		@object.initialize_solver("R")
+		@object.evaluate().should == zero
+	end
+
+	it "should correctly store runtime values" do
+		@object.initialize_solver("R")
+		@object.evaluate("45").should == BigDecimal("45") 
+	end
+
+	it "should correctly calculate (Fs/10)^(3-R)" do
+		@object.initialize_solver("(Fs/10)^(3-R)")
+		@object.evaluate("1").should == BigDecimal("16")
+	end
+
 end

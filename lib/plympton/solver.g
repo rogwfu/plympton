@@ -59,7 +59,14 @@ atom returns [result]
 			|		 a=MODVAR	 {
 						$result = @objectCache.send($a.text)
 			}
-			|		 a=UNMODVAR { } 
+			|		 a=UNMODVAR { 
+						case $a.text 
+							when 'R'
+								$result = @objectCache.runtime 
+							else
+								$result = BigDecimal("0")
+							end
+					 }
 			)
  ;
 
