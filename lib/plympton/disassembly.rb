@@ -19,15 +19,17 @@ module Plympton
 			@attributes = YAML.load(File.open(yamlDisassembly))	
 			@attributes.setup()
 
-			# Allocate an expression to solve
-			@expression = Solver::Parser.new(Solver::Lexer.new(literalExpression))
-			@expression.expressionCache = literalExpression
-			@expression.objectCache = @attributes
+			# Create an instance of the expression
+			initialize_solver(literalExpression)
 		end
 
 		# Wrapper function for the solver's evaluate function 
+		# After expression evaluation it resets for another turn
+		# @returns [BigDecimal] The results of the evaluated expression
 		def evaluate()
-			@expression.evaluate()
+			result = @expression.evaluate()
+			initialize_solver(@expression.expressionCache)
+			return(result)
 		end
 
 		# Function to process hit tracing recorded by Valgrind tools (rufus and callgrind)
@@ -68,6 +70,17 @@ module Plympton
 			
 			# Cleanup open file
 			xmlFile.close()
+		end
+
+		private
+
+		# Parses a mathematical expression and setups for function evaluation
+		# @param [String] A mathematical expression for object evaluation
+		def initialize_solver(literalExpression)
+			# Allocate an expression to solve
+			@expression = Solver::Parser.new(Solver::Lexer.new(literalExpression))
+			@expression.expressionCache = literalExpression
+			@expression.objectCache = @attributes
 		end
 	
 	end
