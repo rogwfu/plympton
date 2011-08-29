@@ -2,7 +2,6 @@ module Plympton
 	# Class responsible for working with a disassembly
 	class Disassembly
 		attr_accessor	:attributes
-		attr_accessor	:functionHitTrace
 		attr_accessor	:expression
 
 		# Create an instance of the disassembly class
@@ -20,13 +19,15 @@ module Plympton
 			@attributes = YAML.load(File.open(yamlDisassembly))	
 			@attributes.setup()
 
-			# Allocate a hash for function hit tracing
-			@functionHitTrace = Hash.new()
-
 			# Allocate an expression to solve
 			@expression = Solver::Parser.new(Solver::Lexer.new(literalExpression))
 			@expression.expressionCache = literalExpression
 			@expression.objectCache = @attributes
+		end
+
+		# Wrapper function for the solver's evaluate function 
+		def evaluate()
+			@expression.evaluate()
 		end
 
 		# Function to process hit tracing recorded by Valgrind tools (rufus and callgrind)
@@ -38,16 +39,16 @@ module Plympton
 			xmlDoc = Nokogiri::XML(xmlFile)
 
 			# Delete any previous hit traces
-			functionHitTrace.clear()
+			@attributes.functionHitTrace.clear()
 
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
 				if(@attributes.functionHash.has_key?(functionOffset)) then
-					if(!@functionHitTrace.has_key?(functionOffset)) then
-						@functionHitTrace[functionOffset] = 1 
+					if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
+						@attributes.functionHitTrace[functionOffset] = 1 
 					else
-						@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + 1 
+						@attributes.functionHitTrace[functionOffset] = @attributes.functionHitTrace[functionOffset] + 1 
 					end
 				end
 
@@ -56,10 +57,10 @@ module Plympton
 					calleeOffset = callee.search("offset").first().inner_text()
 					numberOfCalls = callee.search("numberOfCalls").first().inner_text().to_i()
 					if(@attributes.functionHash.has_key?(calleeOffset)) then
-						if(!@functionHitTrace.has_key?(functionOffset)) then
-							@functionHitTrace[functionOffset] = numberOfCalls 
+						if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
+							@attributes.functionHitTrace[functionOffset] = numberOfCalls 
 						else
-							@functionHitTrace[functionOffset] = @functionHitTrace[functionOffset] + numberOfCalls 
+							@attributes.functionHitTrace[functionOffset] = @attributes.functionHitTrace[functionOffset] + numberOfCalls 
 						end
 					end
 				end

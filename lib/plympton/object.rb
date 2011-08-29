@@ -6,6 +6,7 @@ module Plympton
 
 		# Class Attributes not imported via YAML
 		attr_accessor   :functionHash
+		attr_accessor	:functionHitTrace
 
 		# Defines the objects YAML tag
 		# @return [String] A string signifying the start of an object of this class
@@ -15,18 +16,24 @@ module Plympton
 
 		# Creates hashes for function lookup and cleans up data imported via YAML::load 
 		def setup()
+			# Housekeeping on library name
 			@name.chomp!()
+
+			# Allocate a hash for function hit tracing
+			@functionHitTrace = Hash.new()
+
+			# Create a function hash for lookups
 			init_function_hash()
 		end
 
 		def self.define_sum_avg(variable, attribute)
 			sum_function = variable + "s"
-			define_method(sum_function.to_sym()) do |functionsHit|
+			define_method(sum_function.to_sym()) do 
 				puts "Sum function: " + sum_function
 				result = BigDecimal("0")
-				if(functionsHit !=nil and functionsHit.length() > 0) then
+				if(functionHitTrace !=nil and functionHitTrace.length() > 0) then
 					# Iterate through the function's hit hash
-					functionsHit.each do |offset, numberTimesExecuted|
+					functionHitTrace.each do |offset, numberTimesExecuted|
 						result = result + @functionHash[offset].attribute * numberTimesExecuted
 					end
 				end
@@ -35,9 +42,9 @@ module Plympton
 
 			# Define the average function
 			avg_function = variable + "a"
-			define_method(avg_function.to_sym()) do |functionsHit|
+			define_method(avg_function.to_sym()) do 
 				puts "Average function: " + avg_function
-				send(sum_function.to_sym(functionsHit))/functionsHit.length()
+				send(sum_function.to_sym())/functionHitTrace.length()
 			end
 		end
 

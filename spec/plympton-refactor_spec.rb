@@ -57,7 +57,7 @@ describe "PlymptonRefactor" do
 
 	it "should parse well formed valgrind rufus traces" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
-		@object.functionHitTrace.size.should == 2
+		@object.attributes.functionHitTrace.size.should == 2
 	end
 
 	it "should parsed a hit for function auto_zone_start_monitor" do
@@ -67,7 +67,7 @@ describe "PlymptonRefactor" do
 
 	it "should have hit function auto_zone_start_monitor once" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
-		@object.functionHitTrace["0x1080"].should == 1 
+		@object.attributes.functionHitTrace["0x1080"].should == 1 
 	end
 
 
@@ -78,7 +78,7 @@ describe "PlymptonRefactor" do
 
 	it "should have hit function auto_zone_set_class_list once" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
-		@object.functionHitTrace["0x1090"].should == 1 
+		@object.attributes.functionHitTrace["0x1090"].should == 1 
 	end
 
 	it "cache an equation for the solver" do 
