@@ -38,7 +38,10 @@
 <hit><funcname>auto_zone_start_monitor</funcname><offset>0x1080</offset></hit>
 <hit><funcname>markov:gc_init+377</funcname><offset>0xbb6790</offset></hit>
 <hit><funcname>auto_zone_set_class_list</funcname><offset>0x1090</offset></hit>
+<hit><funcname>auto_zone_set_class_list</funcname><offset>0x1090</offset></hit>
 <hit><funcname>markov:map_images_nolock+1319</funcname><offset>0xbcc851</offset></hit>
+<hit><funcname>auto_zone_start_monitor</funcname><offset>0x1080</offset></hit>
+<hit><funcname>auto_zone_start_monitor</funcname><offset>0x1080</offset></hit>
 
 <status>
   <state>FINISHED</state>

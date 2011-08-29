@@ -4,7 +4,7 @@ require 'yaml'
 describe "PlymptonRefactor" do
 	# Read in a disassembly before running tests
 	before(:all) do
-		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libauto.dylib.fz"), "As + Ba")
+		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libauto.dylib.fz"), "As + Bs + Cs")
 	end
 
 	it "should have the correct disassembly name (/usr/lib/libauto.dylib)" do
@@ -67,7 +67,7 @@ describe "PlymptonRefactor" do
 
 	it "should have hit function auto_zone_start_monitor once" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
-		@object.attributes.functionHitTrace["0x1080"].should == 1 
+		@object.attributes.functionHitTrace["0x1080"].should == 3
 	end
 
 
@@ -78,10 +78,50 @@ describe "PlymptonRefactor" do
 
 	it "should have hit function auto_zone_set_class_list once" do
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
-		@object.attributes.functionHitTrace["0x1090"].should == 1 
+		@object.attributes.functionHitTrace["0x1090"].should == 2 
 	end
 
 	it "cache an equation for the solver" do 
-		@object.expression.expressionCache.should == "As + Ba"	
+		@object.expression.expressionCache.should == "As + Bs + Cs"	
 	end
+
+	it "should calculate the sum of blah correctly" do
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/rufus-test.32bit.trace.xml"))
+		@object.evaluate().should be_an_instance_of(BigDecimal) 
+	end
+
+	# Test the return type of the sum functions
+	zero = BigDecimal("0")
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+		it "should return a BigDecimal for the result of #{variable}s" do
+			@object.initialize_solver(variable + "s")
+			@object.evaluate().should be_an_instance_of(BigDecimal) 
+		end
+	end
+
+	# Test the average functions
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+		it "should return a BigDecimal for the result of #{variable}a" do
+			@object.initialize_solver(variable + "a")
+			@object.evaluate().should be_an_instance_of(BigDecimal) 
+		end
+	end
+
+	# Test the sum functions
+	zero = BigDecimal("0")
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+		it "should correctly calculate the sum for #{variable}s" do
+			@object.initialize_solver(variable + "s")
+			@object.evaluate().should == zero
+		end
+	end
+
+	# Test the average functions
+	{'A' => zero,'B' => zero,'C' => zero,'D' => zero,'E' => zero,'F' => zero,'G' => zero}.each do |variable, result|
+		it "should correctly calculate the average for #{variable}a" do
+			@object.initialize_solver(variable + "a")
+			@object.evaluate().should == zero 
+		end
+	end
+
 end

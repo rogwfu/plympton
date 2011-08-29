@@ -31,12 +31,12 @@ module Plympton
 			define_method(sum_function.to_sym()) do 
 				puts "Sum function: " + sum_function
 				result = BigDecimal("0")
-				if(functionHitTrace !=nil and functionHitTrace.length() > 0) then
+#				if(functionHitTrace !=nil and functionHitTrace.length() > 0) then
 					# Iterate through the function's hit hash
-					functionHitTrace.each do |offset, numberTimesExecuted|
-						result = result + @functionHash[offset].attribute * numberTimesExecuted
-					end
-				end
+#					functionHitTrace.each do |offset, numberTimesExecuted|
+#						result = result + @functionHash[offset].attribute * numberTimesExecuted
+#					end
+#				end
 				return(result)
 			end
 
@@ -44,6 +44,7 @@ module Plympton
 			avg_function = variable + "a"
 			define_method(avg_function.to_sym()) do 
 				puts "Average function: " + avg_function
+				# Catch if the functionHitTrace length is zero
 				send(sum_function.to_sym())/functionHitTrace.length()
 			end
 		end

@@ -72,8 +72,6 @@ module Plympton
 			xmlFile.close()
 		end
 
-		private
-
 		# Parses a mathematical expression and setups for function evaluation
 		# @param [String] A mathematical expression for object evaluation
 		def initialize_solver(literalExpression)
