@@ -63,6 +63,10 @@ atom returns [result]
 						case $a.text 
 							when 'R'
 								$result = @objectCache.runtime 
+							when 'S'
+								$result = @objectCache.send($a.text)
+							when 'V'
+								$result = @objectCache.send($a.text)
 							else
 								$result = BigDecimal("0")
 							end

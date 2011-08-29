@@ -66,6 +66,20 @@ module Plympton
 			define_sum_avg(variable, attribute)
 		end
 
+		# Stub function for now to calculate the steady state transition probability 
+		# @returns [BigDecimal] The steady state transition probability
+		def S()
+			return(BigDecimal("0"))
+		end
+
+		# Function to calculate the function coverage of a test case run
+		# Total number of unique functions/Total number of unique functions executed
+		# @returns [BigDecimal] The percentage 
+		def V()
+			functionCoverage = @functionHitTrace.length()/@numFunctions
+			return(BigDecimal(functionCoverage.to_s()))	
+		end
+
 		# Catch all the average variables since their code is similar
 		def method_missing(name, *args)
 			sumFunction = name.to_s.sub(/^(.)a$/,"\\1s").to_sym()

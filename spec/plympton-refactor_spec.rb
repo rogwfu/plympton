@@ -179,4 +179,12 @@ describe "PlymptonRefactor" do
 		@object.evaluate("1").should == BigDecimal("16")
 	end
 
+	# 409 total unique functions in the library
+	# 2 functions hit
+	it "should correctly calculate function coverage" do
+		@object.initialize_solver("V")
+		result = 2/409
+		@object.evaluate().should == BigDecimal(result.to_s())
+	end
+
 end
