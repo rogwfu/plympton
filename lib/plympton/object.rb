@@ -80,15 +80,6 @@ module Plympton
 			return(BigDecimal(functionCoverage.to_s()))	
 		end
 
-		# Catch all the average variables since their code is similar
-		def method_missing(name, *args)
-			sumFunction = name.to_s.sub(/^(.)a$/,"\\1s").to_sym()
-			puts "Sum Function is: #{sumFunction}"
-			super if(!self.respond_to?(sumFunction))
-			return(BigDecimal.new("0")) if args[0].length() == 0
-			return(send(sumFunction, args[0])/BigDecimal.new(args[0].length().to_s()))
-		end
-
 		private
 
 		# Convenience method for creating a lookup hash for functions based on hex address
