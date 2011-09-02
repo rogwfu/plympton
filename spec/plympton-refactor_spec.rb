@@ -186,5 +186,4 @@ describe "PlymptonRefactor" do
 		result = 2/409
 		@object.evaluate().should == BigDecimal(result.to_s())
 	end
-
 end
