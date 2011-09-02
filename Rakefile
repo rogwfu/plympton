@@ -22,6 +22,8 @@ Jeweler::Tasks.new do |gem|
   gem.email = "roger.seagle@gmail.com"
   gem.authors = ["Roger Seagle"]
   # dependencies defined in Gemfile
+  gem.add_dependency('nokogiri', '= 1.5.0') 
+  gem.add_dependency('antlr3', '= 1.8.12') 
 end
 Jeweler::RubygemsDotOrgTasks.new
 
