@@ -34,7 +34,7 @@ module Plympton
 
 			# Catch Not A Number or Infinite cases
 			if(result.nan?() or result.infinite?()) then
-				result = BigDecimal("0"))
+				result = BigDecimal("0")
 			end
 
 			return(result)
