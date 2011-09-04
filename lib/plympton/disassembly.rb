@@ -31,6 +31,12 @@ module Plympton
 			@attributes.runtime = BigDecimal(runtime)
 			result = @expression.evaluate()
 			initialize_solver(@expression.expressionCache)
+
+			# Catch Not A Number or Infinite cases
+			if(result.nan?() or result.infinite?()) then
+				result = BigDecimal("0"))
+			end
+
 			return(result)
 		end
 
