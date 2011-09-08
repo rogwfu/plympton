@@ -1,7 +1,7 @@
 require 'yaml'
 require 'bigdecimal'
 require 'nokogiri'
-#require 'gsl'
+require 'gsl'
 
 Dir[File.dirname(__FILE__) + "/plympton/*.rb"].each do |file|
 	require "plympton/#{File.basename(file, File.extname(file))}"

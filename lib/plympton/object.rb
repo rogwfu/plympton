@@ -8,6 +8,8 @@ module Plympton
 		attr_accessor	:runtime
 		attr_accessor   :functionHash
 		attr_accessor	:functionHitTrace
+		attr_accessor	:funcTransitionCount
+		attr_accessor   :funcProbMatrix
 
 		# Defines the objects YAML tag
 		# @return [String] A string signifying the start of an object of this class
@@ -30,6 +32,10 @@ module Plympton
 			@functionList.each do |function|
 				function.set_total_number_of_instructions()
 			end
+
+			# Allocate matrices (+ 1 to account for the special state 0)
+			@funcTransitionCount = GSL::Matrix.zeros(@functionList.length() + 1)
+			@funcProbMatrix		 = GSL::Matrix.zeros(@functionList.length() + 1)
 		end
 
 		# 

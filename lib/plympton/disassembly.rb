@@ -51,6 +51,10 @@ module Plympton
 			# Delete any previous hit traces
 			@attributes.functionHitTrace.clear()
 
+			# Reset transition matrices (+1 to account for special state zero)
+			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(@attributes.functionList.length() + 1)
+			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(@attributes.functionList.length() + 1)
+
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
