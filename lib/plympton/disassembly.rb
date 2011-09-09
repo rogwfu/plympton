@@ -51,18 +51,22 @@ module Plympton
 			# Delete any previous hit traces
 			@attributes.functionHitTrace.clear()
 
-			# Reset transition matrices (+1 to account for special state zero)
-			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(@attributes.functionList.length() + 1)
-			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(@attributes.functionList.length() + 1)
+			# Reset transition matrices (1x1 to account for special state zero)
+			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(1)
+			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(1)
+
+			matrixIndex = 1
 
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
 				if(@attributes.functionHash.has_key?(functionOffset)) then
 					if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
-						@attributes.functionHitTrace[functionOffset] = 1 
+						@attributes.functionHitTrace[functionOffset] = [1, matrixIndex] 
+						matrixIndex = matrixIndex + 1
+						# Allocate a row place it at the bottom, allocate a column place it far right
 					else
-						@attributes.functionHitTrace[functionOffset] = @attributes.functionHitTrace[functionOffset] + 1 
+						@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + 1 
 					end
 				end
 
@@ -72,9 +76,11 @@ module Plympton
 					numberOfCalls = callee.search("numberOfCalls").first().inner_text().to_i()
 					if(@attributes.functionHash.has_key?(calleeOffset)) then
 						if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
-							@attributes.functionHitTrace[functionOffset] = numberOfCalls 
+							@attributes.functionHitTrace[functionOffset] = [numberOfCalls, matrixIndex] 
+							matrixIndex = matrixIndex + 1
+							# Allocate a row place it at the bottom, allocate a column place it far right
 						else
-							@attributes.functionHitTrace[functionOffset] = @attributes.functionHitTrace[functionOffset] + numberOfCalls 
+							@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + numberOfCalls 
 						end
 					end
 				end

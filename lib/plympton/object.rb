@@ -33,9 +33,9 @@ module Plympton
 				function.set_total_number_of_instructions()
 			end
 
-			# Allocate matrices (+ 1 to account for the special state 0)
-			@funcTransitionCount = GSL::Matrix.zeros(@functionList.length() + 1)
-			@funcProbMatrix		 = GSL::Matrix.zeros(@functionList.length() + 1)
+			# Allocate matrices (1 x 1 Matrix to account for special state 0)
+			@funcTransitionCount = GSL::Matrix.zeros(1)
+			@funcProbMatrix		 = GSL::Matrix.zeros(1)
 		end
 
 		# 
@@ -48,7 +48,7 @@ module Plympton
 				if(@functionHitTrace !=nil and @functionHitTrace.length() > 0) then
 					# Iterate through the function's hit hash
 					@functionHitTrace.each do |offset, numberTimesExecuted|
-						result = result + BigDecimal("#{@functionHash[offset].send(attribute.to_sym())}") * BigDecimal("#{numberTimesExecuted}")
+						result = result + BigDecimal("#{@functionHash[offset].send(attribute.to_sym())}") * BigDecimal("#{numberTimesExecuted[0]}")
 					end
 				end
 				return(result)
@@ -60,7 +60,7 @@ module Plympton
 				# Catch if the functionHitTrace length is zero
 				numFunctionsExecuted = BigDecimal("0") 
 				@functionHitTrace.each do |offset, numberTimesExecuted|
-					numFunctionsExecuted = numFunctionsExecuted + BigDecimal("#{numberTimesExecuted}")
+					numFunctionsExecuted = numFunctionsExecuted + BigDecimal("#{numberTimesExecuted[0]}")
 				end
 
 				send(sum_function.to_sym())/numFunctionsExecuted
