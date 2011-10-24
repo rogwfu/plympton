@@ -22,6 +22,33 @@ tokens {
 @members {
 	attr_accessor :expressionCache
 	attr_accessor :objectCache
+
+	# Recovery function handling errors 
+	def recover( error = $! )
+		puts "Parser Recovering: #{error}"
+		exit(1)
+	end
+
+	# Reporting function handling errors 
+	def report_error( error = $! )
+		puts "Parser Reporting: #{error}"
+		exit(1)
+	end
+}
+
+
+@lexer::members {
+	# Recovery function handling errors 
+	def recover( error = $! )
+		puts "Lexer Recovering: #{error}"
+		exit(1)
+	end
+
+	# Reporting function handling errors 
+	def report_error( error = $! )
+		puts "Lexer Reporting: #{error}"
+		exit(1)
+	end
 }
 
 /*------------------------------------------------------------------

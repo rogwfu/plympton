@@ -186,4 +186,9 @@ describe "PlymptonRefactor" do
 		result = 2/409
 		@object.evaluate().should == BigDecimal(result.to_s())
 	end
+	
+	# Fail on undefined variables
+	it "should exit on parsing undefined variables" do
+		@object.initialize_solver("I")
+	end
 end

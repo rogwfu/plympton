@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-08-29 14:53:04
+# Generated at: 2011-10-24 19:46:17
 # 
 
 # ~~~> start load path setup
@@ -115,13 +115,25 @@ module Solver
     	attr_accessor :expressionCache
     	attr_accessor :objectCache
 
+    	# Recovery function handling errors 
+    	def recover( error = $! )
+    		puts "Parser Recovering: #{error}"
+    		exit(1)
+    	end
+
+    	# Reporting function handling errors 
+    	def report_error( error = $! )
+    		puts "Parser Reporting: #{error}"
+    		exit(1)
+    	end
+
     # - - - - - - - - - - - - Rules - - - - - - - - - - - - -
 
     # 
     # parser rule evaluate
     # 
     # (in solver.g)
-    # 30:1: evaluate returns [result] : r= expression ;
+    # 57:1: evaluate returns [result] : r= expression ;
     # 
     def evaluate
       # -> uncomment the next line to manually enable rule tracing
@@ -130,8 +142,8 @@ module Solver
       r = nil
 
       begin
-        # at line 31:6: r= expression
-        @state.following.push( TOKENS_FOLLOWING_expression_IN_evaluate_129 )
+        # at line 58:6: r= expression
+        @state.following.push( TOKENS_FOLLOWING_expression_IN_evaluate_139 )
         r = expression
         @state.following.pop
         # --> action
@@ -156,7 +168,7 @@ module Solver
     # parser rule expression
     # 
     # (in solver.g)
-    # 33:1: expression returns [result] : r= mult ( '+' r2= mult | '-' r2= mult )* ;
+    # 60:1: expression returns [result] : r= mult ( '+' r2= mult | '-' r2= mult )* ;
     # 
     def expression
       # -> uncomment the next line to manually enable rule tracing
@@ -166,11 +178,11 @@ module Solver
       r2 = nil
 
       begin
-        # at line 34:5: r= mult ( '+' r2= mult | '-' r2= mult )*
-        @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_150 )
+        # at line 61:5: r= mult ( '+' r2= mult | '-' r2= mult )*
+        @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_160 )
         r = mult
         @state.following.pop
-        # at line 35:5: ( '+' r2= mult | '-' r2= mult )*
+        # at line 62:5: ( '+' r2= mult | '-' r2= mult )*
         while true # decision 1
           alt_1 = 3
           look_1_0 = @input.peek( 1 )
@@ -183,9 +195,9 @@ module Solver
           end
           case alt_1
           when 1
-            # at line 35:7: '+' r2= mult
-            match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expression_158 )
-            @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_162 )
+            # at line 62:7: '+' r2= mult
+            match( PLUS, TOKENS_FOLLOWING_PLUS_IN_expression_168 )
+            @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_172 )
             r2 = mult
             @state.following.pop
             # --> action
@@ -193,9 +205,9 @@ module Solver
             # <-- action
 
           when 2
-            # at line 36:7: '-' r2= mult
-            match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expression_172 )
-            @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_176 )
+            # at line 63:7: '-' r2= mult
+            match( MINUS, TOKENS_FOLLOWING_MINUS_IN_expression_182 )
+            @state.following.push( TOKENS_FOLLOWING_mult_IN_expression_186 )
             r2 = mult
             @state.following.pop
             # --> action
@@ -228,7 +240,7 @@ module Solver
     # parser rule mult
     # 
     # (in solver.g)
-    # 40:1: mult returns [result] : r= log ( '*' r2= log | '/' r2= log )* ;
+    # 67:1: mult returns [result] : r= log ( '*' r2= log | '/' r2= log )* ;
     # 
     def mult
       # -> uncomment the next line to manually enable rule tracing
@@ -238,11 +250,11 @@ module Solver
       r2 = nil
 
       begin
-        # at line 41:5: r= log ( '*' r2= log | '/' r2= log )*
-        @state.following.push( TOKENS_FOLLOWING_log_IN_mult_206 )
+        # at line 68:5: r= log ( '*' r2= log | '/' r2= log )*
+        @state.following.push( TOKENS_FOLLOWING_log_IN_mult_216 )
         r = log
         @state.following.pop
-        # at line 42:5: ( '*' r2= log | '/' r2= log )*
+        # at line 69:5: ( '*' r2= log | '/' r2= log )*
         while true # decision 2
           alt_2 = 3
           look_2_0 = @input.peek( 1 )
@@ -255,9 +267,9 @@ module Solver
           end
           case alt_2
           when 1
-            # at line 42:7: '*' r2= log
-            match( MULT, TOKENS_FOLLOWING_MULT_IN_mult_214 )
-            @state.following.push( TOKENS_FOLLOWING_log_IN_mult_218 )
+            # at line 69:7: '*' r2= log
+            match( MULT, TOKENS_FOLLOWING_MULT_IN_mult_224 )
+            @state.following.push( TOKENS_FOLLOWING_log_IN_mult_228 )
             r2 = log
             @state.following.pop
             # --> action
@@ -265,9 +277,9 @@ module Solver
             # <-- action
 
           when 2
-            # at line 43:7: '/' r2= log
-            match( DIV, TOKENS_FOLLOWING_DIV_IN_mult_228 )
-            @state.following.push( TOKENS_FOLLOWING_log_IN_mult_232 )
+            # at line 70:7: '/' r2= log
+            match( DIV, TOKENS_FOLLOWING_DIV_IN_mult_238 )
+            @state.following.push( TOKENS_FOLLOWING_log_IN_mult_242 )
             r2 = log
             @state.following.pop
             # --> action
@@ -300,7 +312,7 @@ module Solver
     # parser rule log
     # 
     # (in solver.g)
-    # 46:1: log returns [result] : ( 'ln' r= exp | r= exp );
+    # 73:1: log returns [result] : ( 'ln' r= exp | r= exp );
     # 
     def log
       # -> uncomment the next line to manually enable rule tracing
@@ -309,7 +321,7 @@ module Solver
       r = nil
 
       begin
-        # at line 47:3: ( 'ln' r= exp | r= exp )
+        # at line 74:3: ( 'ln' r= exp | r= exp )
         alt_3 = 2
         look_3_0 = @input.peek( 1 )
 
@@ -322,9 +334,9 @@ module Solver
         end
         case alt_3
         when 1
-          # at line 47:5: 'ln' r= exp
-          match( T__19, TOKENS_FOLLOWING_T__19_IN_log_258 )
-          @state.following.push( TOKENS_FOLLOWING_exp_IN_log_262 )
+          # at line 74:5: 'ln' r= exp
+          match( T__19, TOKENS_FOLLOWING_T__19_IN_log_268 )
+          @state.following.push( TOKENS_FOLLOWING_exp_IN_log_272 )
           r = exp
           @state.following.pop
           # --> action
@@ -332,8 +344,8 @@ module Solver
           # <-- action
 
         when 2
-          # at line 48:5: r= exp
-          @state.following.push( TOKENS_FOLLOWING_exp_IN_log_272 )
+          # at line 75:5: r= exp
+          @state.following.push( TOKENS_FOLLOWING_exp_IN_log_282 )
           r = exp
           @state.following.pop
           # --> action
@@ -359,7 +371,7 @@ module Solver
     # parser rule exp
     # 
     # (in solver.g)
-    # 51:1: exp returns [result] : r= atom ( '^' r2= atom )? ;
+    # 78:1: exp returns [result] : r= atom ( '^' r2= atom )? ;
     # 
     def exp
       # -> uncomment the next line to manually enable rule tracing
@@ -369,11 +381,11 @@ module Solver
       r2 = nil
 
       begin
-        # at line 52:5: r= atom ( '^' r2= atom )?
-        @state.following.push( TOKENS_FOLLOWING_atom_IN_exp_293 )
+        # at line 79:5: r= atom ( '^' r2= atom )?
+        @state.following.push( TOKENS_FOLLOWING_atom_IN_exp_303 )
         r = atom
         @state.following.pop
-        # at line 52:12: ( '^' r2= atom )?
+        # at line 79:12: ( '^' r2= atom )?
         alt_4 = 2
         look_4_0 = @input.peek( 1 )
 
@@ -382,9 +394,9 @@ module Solver
         end
         case alt_4
         when 1
-          # at line 52:14: '^' r2= atom
-          match( EXP, TOKENS_FOLLOWING_EXP_IN_exp_297 )
-          @state.following.push( TOKENS_FOLLOWING_atom_IN_exp_301 )
+          # at line 79:14: '^' r2= atom
+          match( EXP, TOKENS_FOLLOWING_EXP_IN_exp_307 )
+          @state.following.push( TOKENS_FOLLOWING_atom_IN_exp_311 )
           r2 = atom
           @state.following.pop
           # --> action
@@ -414,7 +426,7 @@ module Solver
     # parser rule atom
     # 
     # (in solver.g)
-    # 55:1: atom returns [result] : (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR ) ;
+    # 82:1: atom returns [result] : (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR ) ;
     # 
     def atom
       # -> uncomment the next line to manually enable rule tracing
@@ -424,8 +436,8 @@ module Solver
       r = nil
 
       begin
-        # at line 56:7: (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR )
-        # at line 56:7: (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR )
+        # at line 83:7: (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR )
+        # at line 83:7: (a= INT | a= FLOAT | LPAREN r= expression RPAREN | a= MODVAR | a= UNMODVAR )
         alt_5 = 5
         case look_5 = @input.peek( 1 )
         when INT then alt_5 = 1
@@ -438,33 +450,33 @@ module Solver
         end
         case alt_5
         when 1
-          # at line 56:8: a= INT
-          a = match( INT, TOKENS_FOLLOWING_INT_IN_atom_331 )
+          # at line 83:8: a= INT
+          a = match( INT, TOKENS_FOLLOWING_INT_IN_atom_341 )
           # --> action
           result = BigDecimal(a.text)
           # <-- action
 
         when 2
-          # at line 57:8: a= FLOAT
-          a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_atom_346 )
+          # at line 84:8: a= FLOAT
+          a = match( FLOAT, TOKENS_FOLLOWING_FLOAT_IN_atom_356 )
           # --> action
           result = BigDecimal(a.text)
           # <-- action
 
         when 3
-          # at line 58:8: LPAREN r= expression RPAREN
-          match( LPAREN, TOKENS_FOLLOWING_LPAREN_IN_atom_357 )
-          @state.following.push( TOKENS_FOLLOWING_expression_IN_atom_361 )
+          # at line 85:8: LPAREN r= expression RPAREN
+          match( LPAREN, TOKENS_FOLLOWING_LPAREN_IN_atom_367 )
+          @state.following.push( TOKENS_FOLLOWING_expression_IN_atom_371 )
           r = expression
           @state.following.pop
           # --> action
            result = r 
           # <-- action
-          match( RPAREN, TOKENS_FOLLOWING_RPAREN_IN_atom_365 )
+          match( RPAREN, TOKENS_FOLLOWING_RPAREN_IN_atom_375 )
 
         when 4
-          # at line 59:8: a= MODVAR
-          a = match( MODVAR, TOKENS_FOLLOWING_MODVAR_IN_atom_376 )
+          # at line 86:8: a= MODVAR
+          a = match( MODVAR, TOKENS_FOLLOWING_MODVAR_IN_atom_386 )
           # --> action
 
           						result = @objectCache.send(a.text)
@@ -472,13 +484,17 @@ module Solver
           # <-- action
 
         when 5
-          # at line 62:8: a= UNMODVAR
-          a = match( UNMODVAR, TOKENS_FOLLOWING_UNMODVAR_IN_atom_390 )
+          # at line 89:8: a= UNMODVAR
+          a = match( UNMODVAR, TOKENS_FOLLOWING_UNMODVAR_IN_atom_400 )
           # --> action
            
           						case a.text 
           							when 'R'
           								result = @objectCache.runtime 
+          							when 'S'
+          								result = @objectCache.send(a.text)
+          							when 'V'
+          								result = @objectCache.send(a.text)
           							else
           								result = BigDecimal("0")
           							end
@@ -502,30 +518,30 @@ module Solver
 
 
 
-    TOKENS_FOLLOWING_expression_IN_evaluate_129 = Set[ 1 ]
-    TOKENS_FOLLOWING_mult_IN_expression_150 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_PLUS_IN_expression_158 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_mult_IN_expression_162 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_MINUS_IN_expression_172 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_mult_IN_expression_176 = Set[ 1, 4, 5 ]
-    TOKENS_FOLLOWING_log_IN_mult_206 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_MULT_IN_mult_214 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_log_IN_mult_218 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_DIV_IN_mult_228 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_log_IN_mult_232 = Set[ 1, 6, 7 ]
-    TOKENS_FOLLOWING_T__19_IN_log_258 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_exp_IN_log_262 = Set[ 1 ]
+    TOKENS_FOLLOWING_expression_IN_evaluate_139 = Set[ 1 ]
+    TOKENS_FOLLOWING_mult_IN_expression_160 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_PLUS_IN_expression_168 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_mult_IN_expression_172 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_MINUS_IN_expression_182 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_mult_IN_expression_186 = Set[ 1, 4, 5 ]
+    TOKENS_FOLLOWING_log_IN_mult_216 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_MULT_IN_mult_224 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_log_IN_mult_228 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_DIV_IN_mult_238 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_log_IN_mult_242 = Set[ 1, 6, 7 ]
+    TOKENS_FOLLOWING_T__19_IN_log_268 = Set[ 10, 12, 13, 14, 15, 19 ]
     TOKENS_FOLLOWING_exp_IN_log_272 = Set[ 1 ]
-    TOKENS_FOLLOWING_atom_IN_exp_293 = Set[ 1, 9 ]
-    TOKENS_FOLLOWING_EXP_IN_exp_297 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_atom_IN_exp_301 = Set[ 1 ]
-    TOKENS_FOLLOWING_INT_IN_atom_331 = Set[ 1 ]
-    TOKENS_FOLLOWING_FLOAT_IN_atom_346 = Set[ 1 ]
-    TOKENS_FOLLOWING_LPAREN_IN_atom_357 = Set[ 10, 12, 13, 14, 15, 19 ]
-    TOKENS_FOLLOWING_expression_IN_atom_361 = Set[ 11 ]
-    TOKENS_FOLLOWING_RPAREN_IN_atom_365 = Set[ 1 ]
-    TOKENS_FOLLOWING_MODVAR_IN_atom_376 = Set[ 1 ]
-    TOKENS_FOLLOWING_UNMODVAR_IN_atom_390 = Set[ 1 ]
+    TOKENS_FOLLOWING_exp_IN_log_282 = Set[ 1 ]
+    TOKENS_FOLLOWING_atom_IN_exp_303 = Set[ 1, 9 ]
+    TOKENS_FOLLOWING_EXP_IN_exp_307 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_atom_IN_exp_311 = Set[ 1 ]
+    TOKENS_FOLLOWING_INT_IN_atom_341 = Set[ 1 ]
+    TOKENS_FOLLOWING_FLOAT_IN_atom_356 = Set[ 1 ]
+    TOKENS_FOLLOWING_LPAREN_IN_atom_367 = Set[ 10, 12, 13, 14, 15, 19 ]
+    TOKENS_FOLLOWING_expression_IN_atom_371 = Set[ 11 ]
+    TOKENS_FOLLOWING_RPAREN_IN_atom_375 = Set[ 1 ]
+    TOKENS_FOLLOWING_MODVAR_IN_atom_386 = Set[ 1 ]
+    TOKENS_FOLLOWING_UNMODVAR_IN_atom_400 = Set[ 1 ]
 
   end # class Parser < ANTLR3::Parser
 

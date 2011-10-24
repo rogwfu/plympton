@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-08-29 14:53:04
+# Generated at: 2011-10-24 19:46:17
 # 
 
 # ~~~> start load path setup
@@ -98,6 +98,24 @@ module Solver
 
     end
     
+    # - - - - - - begin action @lexer::members - - - - - -
+    # solver.g
+
+
+    	# Recovery function handling errors 
+    	def recover( error = $! )
+    		puts "Lexer Recovering: #{error}"
+    		exit(1)
+    	end
+
+    	# Reporting function handling errors 
+    	def report_error( error = $! )
+    		puts "Lexer Reporting: #{error}"
+    		exit(1)
+    	end
+
+    # - - - - - - end action @lexer::members - - - - - - -
+
     
     # - - - - - - - - - - - lexer rules - - - - - - - - - - - -
     # lexer rule plus! (PLUS)
@@ -111,7 +129,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 7:8: '+'
+      # at line 21:8: '+'
       match( 0x2b )
 
       
@@ -135,7 +153,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 8:9: '-'
+      # at line 22:9: '-'
       match( 0x2d )
 
       
@@ -159,7 +177,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 9:8: '*'
+      # at line 23:8: '*'
       match( 0x2a )
 
       
@@ -183,7 +201,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 10:7: '/'
+      # at line 24:7: '/'
       match( 0x2f )
 
       
@@ -207,7 +225,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 11:7: '%'
+      # at line 25:7: '%'
       match( 0x25 )
 
       
@@ -231,7 +249,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 12:7: '^'
+      # at line 26:7: '^'
       match( 0x5e )
 
       
@@ -255,7 +273,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 13:10: '('
+      # at line 27:10: '('
       match( 0x28 )
 
       
@@ -279,7 +297,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 14:10: ')'
+      # at line 28:10: ')'
       match( 0x29 )
 
       
@@ -303,7 +321,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 15:9: 'ln'
+      # at line 29:9: 'ln'
       match( "ln" )
 
       
@@ -327,8 +345,8 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 76:11: ( DIGIT )+
-      # at file 76:11: ( DIGIT )+
+      # at line 107:11: ( DIGIT )+
+      # at file 107:11: ( DIGIT )+
       match_count_1 = 0
       while true
         alt_1 = 2
@@ -340,7 +358,7 @@ module Solver
         end
         case alt_1
         when 1
-          # at line 76:12: DIGIT
+          # at line 107:12: DIGIT
           digit!
 
         else
@@ -375,7 +393,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 77:12: INT '.' INT
+      # at line 108:12: INT '.' INT
       int!
       match( 0x2e )
       int!
@@ -401,10 +419,10 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 78:13: 'A' .. 'G' ( MODIFIER )
+      # at line 109:13: 'A' .. 'G' ( MODIFIER )
       match_range( 0x41, 0x47 )
-      # at line 78:21: ( MODIFIER )
-      # at line 78:22: MODIFIER
+      # at line 109:21: ( MODIFIER )
+      # at line 109:22: MODIFIER
       modifier!
 
 
@@ -429,7 +447,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 79:14: 'R' .. 'W'
+      # at line 110:14: 'R' .. 'W'
       match_range( 0x52, 0x57 )
 
       
@@ -453,8 +471,8 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 80:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
-      # at file 80:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+      # at line 111:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
+      # at file 111:14: ( '\\t' | ' ' | '\\r' | '\\n' | '\\u000C' )+
       match_count_2 = 0
       while true
         alt_2 = 2
@@ -509,7 +527,7 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 86:18: '0' .. '9'
+      # at line 117:18: '0' .. '9'
       match_range( 0x30, 0x39 )
 
     ensure
