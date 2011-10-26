@@ -7,7 +7,6 @@ class PlymptonMatrix < Matrix
 	# @param [Fixnum] Size of the square matrix n x n
 	# @returns [Matrix] An n x n matrix with every entry a BigDecimal("0")
 	def self.zero(size)
-		puts "Allocating a BigDecimal zeros matrix"
 		Matrix.build(size) do
 			BigDecimal("0")
 		end

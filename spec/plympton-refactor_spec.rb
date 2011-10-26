@@ -195,7 +195,9 @@ describe "PlymptonRefactor" do
 	# Test Matrix of zeros
 	it "should create a BigDecimal Matrix of zeros" do
 		bigMatrix = PlymptonMatrix.zero(6)
-		puts bigMatrix.inspect()
+		bigMatrix.each do |entry|
+			entry.should == BigDecimal("0")
+			entry.should be_an_instance_of(BigDecimal)
+		end
 	end
-	
 end
