@@ -52,8 +52,8 @@ module Plympton
 			@attributes.functionHitTrace.clear()
 
 			# Reset transition matrices (1x1 to account for special state zero)
-			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(1)
-			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(1)
+#			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(1)
+#			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(1)
 
 			matrixIndex = 1
 

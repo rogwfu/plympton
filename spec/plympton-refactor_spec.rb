@@ -191,4 +191,11 @@ describe "PlymptonRefactor" do
 	it "should exit on parsing undefined variables" do
 		@object.initialize_solver("I")
 	end
+
+	# Test Matrix of zeros
+	it "should create a BigDecimal Matrix of zeros" do
+		bigMatrix = PlymptonMatrix.zero(6)
+		puts bigMatrix.inspect()
+	end
+	
 end

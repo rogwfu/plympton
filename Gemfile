@@ -12,5 +12,4 @@ group :development do
   gem "rcov", ">= 0"
   gem "nokogiri", "~> 1.5.0"
   gem "antlr3", "~>1.8.11"
-  gem "gsl", "~>1.14.7"
 end

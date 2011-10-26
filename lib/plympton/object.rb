@@ -34,8 +34,9 @@ module Plympton
 			end
 
 			# Allocate matrices (1 x 1 Matrix to account for special state 0)
-			@funcTransitionCount = GSL::Matrix.zeros(1)
-			@funcProbMatrix		 = GSL::Matrix.zeros(1)
+#			@funcTransitionCount = GSL::Matrix.zeros(1)
+			#@funcProbMatrix		 = GSL::Matrix.zeros(1)
+			@funcProbMatrix = PlymptonMatrix.zero(@functionHash.size())
 		end
 
 		# 

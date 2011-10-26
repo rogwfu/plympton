@@ -24,8 +24,9 @@ Jeweler::Tasks.new do |gem|
   # dependencies defined in Gemfile
   gem.add_dependency('nokogiri', '= 1.5.0') 
   gem.add_dependency('antlr3', '= 1.8.12') 
-  gem.add_dependency('gsl', '= 1.14.7') 
 end
+
+
 Jeweler::RubygemsDotOrgTasks.new
 
 require 'rspec/core'
