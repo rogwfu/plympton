@@ -199,5 +199,6 @@ describe "PlymptonRefactor" do
 			entry.should == BigDecimal("0")
 			entry.should be_an_instance_of(BigDecimal)
 		end
+		puts bigMatrix.to_s()
 	end
 end
