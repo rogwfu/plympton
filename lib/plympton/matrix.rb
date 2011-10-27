@@ -12,15 +12,6 @@ class PlymptonMatrix < Matrix
 		end
 	end
 
-	# Allocate a row vector of BigDecimal zeros
-	# @param [Fixnum] Size of the row vector 
-	# @returns [PlymptonMatrix] An 1 x n matrix with every entry a BigDecimal("0")
-	def self.row_vec(size)
-		PlymptonMatrix.build(1, size) do
-			BigDecimal("0")
-		end
-	end
-
 	# Instance Methods 
 	# Prints the string representation of a Matrix object 
 	# @params [Hash] Hash of functions defined by an object
@@ -45,5 +36,4 @@ class PlymptonMatrix < Matrix
 		end
 		nil
 	end
-	
 end

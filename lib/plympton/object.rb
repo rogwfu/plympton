@@ -10,7 +10,6 @@ module Plympton
 		attr_accessor	:functionHitTrace
 		attr_accessor	:transitionMatrix
 		attr_accessor   :probMatrix
-		attr_accessor	:totalNumberTransitions
 
 		# Defines the objects YAML tag
 		# @return [String] A string signifying the start of an object of this class
@@ -34,6 +33,7 @@ module Plympton
 			@functionList.each do |function|
 				function.set_total_number_of_instructions()
 				function.markovIdx = markovIdx
+				function.numTransitions = 0
 				markovIdx += 1
 			end
 
@@ -41,7 +41,6 @@ module Plympton
 			# Transition matrix persists probMatrix recalculated
 			@transitionMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
 			@probMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
-			@totalNumberTransitions = PlymptonMatrix.row_vec(@functionHash.size() + 1)
 		end
 
 		# 
@@ -81,6 +80,11 @@ module Plympton
 		# Stub function for now to calculate the steady state transition probability 
 		# @returns [BigDecimal] The steady state transition probability
 		def S()
+			#pMatrix = @totalNumberTransitions * @transitionMatrix
+			#puts pMatrix
+			#puts pMatrix.row_size()
+			#puts pMatrix.column_size()
+			puts @transitionMatrix
 			return(BigDecimal("0"))
 		end
 

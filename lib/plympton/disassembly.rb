@@ -51,41 +51,41 @@ module Plympton
 			# Delete any previous hit traces
 			@attributes.functionHitTrace.clear()
 
-			# Reset transition matrices (1x1 to account for special state zero)
-#			@attributes.funcTransitionCount	 = GSL::Matrix.zeros(1)
-#			@attributes.funcProbMatrix		 = GSL::Matrix.zeros(1)
-
-			matrixIndex = 1
-
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
 				if(@attributes.functionHash.has_key?(functionOffset)) then
 					if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
-						@attributes.functionHitTrace[functionOffset] = [1, matrixIndex] 
-						matrixIndex = matrixIndex + 1
-						# Allocate a row place it at the bottom, allocate a column place it far right
+						@attributes.functionHitTrace[functionOffset] = [1] 
 					else
 						@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + 1 
 					end
-				end
 
-				# Parse all the functions this function called
-				hit.xpath("callee").each do |callee|
-					calleeOffset = callee.search("offset").first().inner_text()
-					numberOfCalls = callee.search("numberOfCalls").first().inner_text().to_i()
-					if(@attributes.functionHash.has_key?(calleeOffset)) then
-						if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
-							@attributes.functionHitTrace[functionOffset] = [numberOfCalls, matrixIndex] 
-							matrixIndex = matrixIndex + 1
-							# Allocate a row place it at the bottom, allocate a column place it far right
-						else
-							@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + numberOfCalls 
+					# Parse all the functions this function called
+					hit.xpath("callee").each do |callee|
+						calleeOffset = callee.search("offset").first().inner_text()
+						numberOfCalls = callee.search("numberOfCalls").first().inner_text().to_i()
+						if(@attributes.functionHash.has_key?(calleeOffset)) then
+							if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
+								@attributes.functionHitTrace[functionOffset] = [numberOfCalls] 
+							else
+								@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + numberOfCalls 
+							end
+
+							# Increment the number of transitions for a state
+							puts "This is the functionOffset: #{functionOffset}"
+							if(@attributes.functionHash[functionOffset] == nil) then
+								puts functionOffset
+							end
+							@attributes.functionHash[functionOffset].numTransitions += BigDecimal("#{numberOfCalls}")
+
+							# Update the transition matrix
+							@attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] = @attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] + BigDecimal("#{numberOfCalls}") 
 						end
-					end
-				end
-			end
-			
+					end # end callee xpath
+				end # end function hash check for hit function
+			end # end hit xpath
+
 			# Cleanup open file
 			xmlFile.close()
 		end
