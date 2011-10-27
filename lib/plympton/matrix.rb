@@ -16,7 +16,7 @@ class PlymptonMatrix < Matrix
 	# @param [Fixnum] Size of the row vector 
 	# @returns [PlymptonMatrix] An 1 x n matrix with every entry a BigDecimal("0")
 	def self.row_vec(size)
-		PlymptonMatrix.build(size) do
+		PlymptonMatrix.build(1, size) do
 			BigDecimal("0")
 		end
 	end
@@ -39,7 +39,7 @@ class PlymptonMatrix < Matrix
 		for rowIdx in 0...rowSize do
 			print "%10d |" % rowIdx 
 			for colIdx in 0...colSize do
-	#			print" %10d" % self[rowIdx, colIdx].to_s()
+				print" %10f" % self[rowIdx, colIdx].to_s('10F')
 			end
 			print(" |\n")
 		end

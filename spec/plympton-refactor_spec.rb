@@ -201,4 +201,16 @@ describe "PlymptonRefactor" do
 		end
 		puts bigMatrix.to_s()
 	end
+
+	# Test Row Vector
+	it "should create a row vector of BigDecimal zeros" do
+		bigRowVector = PlymptonMatrix.row_vec(6)
+		bigRowVector.row_size.should == 1
+		bigRowVector.column_size.should == 6
+		bigRowVector.each do |entry|
+			entry.should == BigDecimal("0")
+			entry.should be_an_instance_of(BigDecimal)
+		end
+		puts bigRowVector.to_s()
+	end
 end
