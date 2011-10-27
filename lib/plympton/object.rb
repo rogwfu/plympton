@@ -8,8 +8,9 @@ module Plympton
 		attr_accessor	:runtime
 		attr_accessor   :functionHash
 		attr_accessor	:functionHitTrace
-		attr_accessor	:funcTransitionCount
-		attr_accessor   :funcProbMatrix
+		attr_accessor	:transitionMatrix
+		attr_accessor   :probMatrix
+		attr_accessor	:totalNumberTransitions
 
 		# Defines the objects YAML tag
 		# @return [String] A string signifying the start of an object of this class
@@ -28,15 +29,19 @@ module Plympton
 			# Create a function hash for lookups
 			init_function_hash()
 
-			# Precompute number of instructions per function
+			# Precompute number of instructions per function and set markovIdx
+			markovIdx = 1
 			@functionList.each do |function|
 				function.set_total_number_of_instructions()
+				function.markovIdx = markovIdx
+				markovIdx += 1
 			end
 
-			# Allocate matrices (1 x 1 Matrix to account for special state 0)
-#			@funcTransitionCount = GSL::Matrix.zeros(1)
-			#@funcProbMatrix		 = GSL::Matrix.zeros(1)
-			@funcProbMatrix = PlymptonMatrix.zero(@functionHash.size())
+			# Allocate transition matrix and probMatrix(# functions + special state 0)
+			# Transition matrix persists probMatrix recalculated
+			@transitionMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
+			@probMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
+			@totalNumberTransitions = PlymptonMatrix.row_vec(@functionHash.size() + 1)
 		end
 
 		# 

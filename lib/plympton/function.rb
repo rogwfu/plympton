@@ -2,7 +2,7 @@ module Plympton
 	# Class responsible for parsing a YAML serialized function object
     class Function
 		# YAML Entries
-        attr_accessor   :name, :startAddress, :endAddress, :savedRegSize, :localVarSize, :argSize, :frameSize, :numArgs, :numLocalVars, :isImport, :numChunks, :chunkList, :cyclomaticComplexity
+        attr_accessor   :name, :startAddress, :endAddress, :savedRegSize, :localVarSize, :argSize, :frameSize, :numArgs, :numLocalVars, :isImport, :numChunks, :chunkList, :cyclomaticComplexity, :markovIdx
 
 		attr_accessor :numInstructions
 

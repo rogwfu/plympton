@@ -5,8 +5,17 @@ class PlymptonMatrix < Matrix
 
 	# Allocate a matrix of BigDecimal zeros
 	# @param [Fixnum] Size of the square matrix n x n
-	# @returns [Matrix] An n x n matrix with every entry a BigDecimal("0")
+	# @returns [PlymptonMatrix] An n x n matrix with every entry a BigDecimal("0")
 	def self.zero(size)
+		PlymptonMatrix.build(size) do
+			BigDecimal("0")
+		end
+	end
+
+	# Allocate a row vector of BigDecimal zeros
+	# @param [Fixnum] Size of the row vector 
+	# @returns [PlymptonMatrix] An 1 x n matrix with every entry a BigDecimal("0")
+	def self.row_vec(size)
 		PlymptonMatrix.build(size) do
 			BigDecimal("0")
 		end
