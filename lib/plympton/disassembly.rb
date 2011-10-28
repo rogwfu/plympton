@@ -75,7 +75,7 @@ module Plympton
 							# Increment the number of transitions for a state
 							puts "This is the functionOffset: #{functionOffset}"
 							if(@attributes.functionHash[functionOffset] == nil) then
-								puts functionOffset
+								puts "Nil, shouldn't happen: #{functionOffset}"
 							end
 							@attributes.functionHash[functionOffset].numTransitions += BigDecimal("#{numberOfCalls}")
 

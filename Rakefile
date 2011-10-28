@@ -24,6 +24,7 @@ Jeweler::Tasks.new do |gem|
   # dependencies defined in Gemfile
   gem.add_dependency('nokogiri', '= 1.5.0') 
   gem.add_dependency('antlr3', '= 1.8.12') 
+  gem.add_dependency('narray', '= 0.6.0.1') 
 end
 
 

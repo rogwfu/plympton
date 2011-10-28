@@ -193,19 +193,19 @@ describe "PlymptonRefactor" do
 	end
 
 	# Test Matrix of zeros
-	it "should create a BigDecimal Matrix of zeros" do
-		bigMatrix = PlymptonMatrix.zero(6)
-		bigMatrix.each do |entry|
-			entry.should == BigDecimal("0")
-			entry.should be_an_instance_of(BigDecimal)
-		end
-		puts bigMatrix.to_s()
+	it "should create a square BigDecimal Matrix of zeros" do
+		dimension = 5
+		transitionMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
+		transitionMatrix[3,1] = BigDecimal("2.0") 
+#		transitionMatrix.investigate()
+		transitionMatrix[3,1].should == BigDecimal("2.0")
 	end
 
 	# Test probability matrix calculation
 	it "should correctly calculate probability matrix" do
 		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libFontParser.64.dylib.fz"), "S")
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
-		@object.evaluate().should == BigDecimal("0")
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+		@object.evaluate()
 	end
 end

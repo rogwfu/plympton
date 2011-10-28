@@ -10,6 +10,7 @@ module Plympton
 		attr_accessor	:functionHitTrace
 		attr_accessor	:transitionMatrix
 		attr_accessor   :probMatrix
+		attr_accessor	:trace
 
 		# Defines the objects YAML tag
 		# @return [String] A string signifying the start of an object of this class
@@ -33,14 +34,17 @@ module Plympton
 			@functionList.each do |function|
 				function.set_total_number_of_instructions()
 				function.markovIdx = markovIdx
-				function.numTransitions = 0
+				function.numTransitions = BigDecimal("0")
 				markovIdx += 1
 			end
 
 			# Allocate transition matrix and probMatrix(# functions + special state 0)
 			# Transition matrix persists probMatrix recalculated
-			@transitionMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
-			@probMatrix = PlymptonMatrix.zero(@functionHash.size() + 1)
+			dimension = @functionHash.size() + 1
+			@transitionMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
+			@probMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
+#			@transitionMatrix = PlymptonMatrix.square(@functionHash.size() + 1)
+#			@probMatrix = PlymptonMatrix.square(@functionHash.size() + 1)
 		end
 
 		# 
@@ -78,13 +82,32 @@ module Plympton
 		end
 
 		# Stub function for now to calculate the steady state transition probability 
+		# Function to calculate Uniqueness of path taken:
+		# http://www.cs.ucf.edu/~czou/research/EvolutionaryInputCrafting-ACSAC07.pdf
+		# Had to scale due to overflow: log 1/product(pi) = log(productpi)-1 = -log(productpi) = - summation log(pi)
 		# @returns [BigDecimal] The steady state transition probability
 		def S()
-			#pMatrix = @totalNumberTransitions * @transitionMatrix
-			#puts pMatrix
-			#puts pMatrix.row_size()
-			#puts pMatrix.column_size()
-			puts @transitionMatrix
+			dimensions = @transitionMatrix.shape()
+			rowDimension = dimensions[0]
+			colDimension = dimensions[1]
+			pMatrix = NMatrix.object(rowDimension, colDimension).fill!(BigDecimal("0"))
+
+			# Need to remember Markov state 0!!!!
+			# Calculate the new transition probabilities
+			@functionHash.each_value do |function|
+				rowIdx = function.markovIdx
+#				puts "#{function.startAddress}: #{function.numTransitions.to_s("F")}"
+				for column in 0...colDimension
+					if(function.numTransitions != BigDecimal("0")) then
+						pMatrix[rowIdx,column] = @transitionMatrix[rowIdx,column]/function.numTransitions
+					end
+				end
+			end
+
+			# Calculate the statistic for function path uniqueness
+			pathUniqueness = pathUniqueness + Math.log(probability)
+			pathUniqueness = Math.abs(pathUniqueness)
+		
 			return(BigDecimal("0"))
 		end
 
