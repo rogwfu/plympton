@@ -91,7 +91,7 @@ module Plympton
 		# Function to calculate Uniqueness of path taken:
 		# http://www.cs.ucf.edu/~czou/research/EvolutionaryInputCrafting-ACSAC07.pdf
 		# Had to scale due to overflow: log 1/product(pi) = log(productpi)-1 = -log(productpi) = - summation log(pi)
-		# @returns [BigDecimal] The steady state transition probability
+		# @return [BigDecimal] The steady state transition probability
 		def M()
 			dimensions = @transitionMatrix.shape()
 			rowDimension = dimensions[0]
@@ -128,7 +128,7 @@ module Plympton
 
 		# Function to calculate the function coverage of a test case run
 		# Total number of unique functions/Total number of unique functions executed
-		# @returns [BigDecimal] The percentage 
+		# @return [BigDecimal] The percentage 
 		def V()
 			functionCoverage = @functionHitTrace.length()/@numFunctions
 			return(BigDecimal(functionCoverage.to_s()))	

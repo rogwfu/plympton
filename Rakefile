@@ -54,3 +54,9 @@ Rake::RDocTask.new do |rdoc|
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
+
+# Rake Task for building yard doc
+require 'yard'
+YARD::Rake::YardocTask.new do |t|
+	t.options = ['--exclude', 'bin/*']
+end

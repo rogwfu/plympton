@@ -26,7 +26,7 @@ module Plympton
 		# Wrapper function for the solver's evaluate function 
 		# After expression evaluation it resets for another turn
 		# @param [BigDecimal] Test case runtime, defaults to zero
-		# @returns [BigDecimal] The results of the evaluated expression
+		# @return [BigDecimal] The results of the evaluated expression
 		def evaluate(runtime="0")
 			@attributes.runtime = BigDecimal(runtime)
 			result = @expression.evaluate()
