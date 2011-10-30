@@ -1,14 +1,14 @@
 # encoding: utf-8
 
-require 'rubygems'
-require 'bundler'
-begin
-  Bundler.setup(:default, :development)
-rescue Bundler::BundlerError => e
-  $stderr.puts e.message
-  $stderr.puts "Run `bundle install` to install missing gems"
-  exit e.status_code
-end
+#require 'rubygems'
+#require 'bundler'
+#begin
+#  Bundler.setup(:default, :development)
+#rescue Bundler::BundlerError => e
+#  $stderr.puts e.message
+#  $stderr.puts "Run `bundle install` to install missing gems"
+#  exit e.status_code
+#end
 require 'rake'
 
 require 'jeweler'
@@ -21,10 +21,11 @@ Jeweler::Tasks.new do |gem|
   gem.description = %Q{A Gem to read program disassembly from a YAML dump.  The YAML dump is generated from an ida pro python script.  This script is included along with this Gem (func.py)}
   gem.email = "roger.seagle@gmail.com"
   gem.authors = ["Roger Seagle"]
+  gem.required_ruby_version = '>= 1.9.2'
   # dependencies defined in Gemfile
   gem.add_dependency('nokogiri', '= 1.5.0') 
   gem.add_dependency('antlr3', '= 1.8.12') 
-  gem.add_dependency('narray', '= 0.6.0.1') 
+  gem.add_dependency('narray', '>= 0.5.9')
 end
 
 
@@ -43,7 +44,8 @@ end
 
 task :default => :spec
 
-require 'rake/rdoctask'
+#require 'rake/rdoctask'
+require 'rdoc/task'
 Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 

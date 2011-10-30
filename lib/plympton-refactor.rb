@@ -1,7 +1,7 @@
 require 'yaml'
 require 'bigdecimal'
 require 'nokogiri'
-$: << "/Users/rseagle/.rvm/gems/ruby-1.9.2-head/gems/narray-0.6.0.1" 
+#$: << "/Users/rseagle/.rvm/gems/ruby-1.9.2-head/gems/narray-0.6.0.1" 
 require 'narray'
 
 Dir[File.dirname(__FILE__) + "/plympton/*.rb"].each do |file|

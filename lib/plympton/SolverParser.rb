@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-10-24 19:46:17
+# Generated at: 2011-10-30 13:28:41
 # 
 
 # ~~~> start load path setup
@@ -489,10 +489,10 @@ module Solver
           # --> action
            
           						case a.text 
+          							when 'M'
+          								result = @objectCache.send(a.text)
           							when 'R'
           								result = @objectCache.runtime 
-          							when 'S'
-          								result = @objectCache.send(a.text)
           							when 'V'
           								result = @objectCache.send(a.text)
           							else

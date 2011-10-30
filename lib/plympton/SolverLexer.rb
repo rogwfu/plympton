@@ -5,7 +5,7 @@
 # Generated using ANTLR version: 3.2.1-SNAPSHOT Jul 31, 2010 19:34:52
 # Ruby runtime library version: 1.8.11
 # Input grammar file: solver.g
-# Generated at: 2011-10-24 19:46:17
+# Generated at: 2011-10-30 13:28:41
 # 
 
 # ~~~> start load path setup
@@ -447,8 +447,16 @@ module Solver
 
       
       # - - - - main rule block - - - -
-      # at line 110:14: 'R' .. 'W'
-      match_range( 0x52, 0x57 )
+      # at line 110:14: ( 'M' | 'R' | 'V' )
+      if @input.peek(1) == 0x4d || @input.peek(1) == 0x52 || @input.peek(1) == 0x56
+        @input.consume
+      else
+        mse = MismatchedSet( nil )
+        recover mse
+        raise mse
+      end
+
+
 
       
       @state.type = type
@@ -646,7 +654,8 @@ module Solver
       TRANSITION = [
         unpack( 2, 13, 1, -1, 2, 13, 18, -1, 1, 13, 4, -1, 1, 5, 2, -1, 
                 1, 7, 1, 8, 1, 3, 1, 1, 1, -1, 1, 2, 1, -1, 1, 4, 10, 10, 
-                7, -1, 7, 11, 10, -1, 6, 12, 6, -1, 1, 6, 13, -1, 1, 9 ),
+                7, -1, 7, 11, 5, -1, 1, 12, 4, -1, 1, 12, 3, -1, 1, 12, 
+                7, -1, 1, 6, 13, -1, 1, 9 ),
         unpack(  ),
         unpack(  ),
         unpack(  ),

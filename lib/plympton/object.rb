@@ -92,7 +92,7 @@ module Plympton
 		# http://www.cs.ucf.edu/~czou/research/EvolutionaryInputCrafting-ACSAC07.pdf
 		# Had to scale due to overflow: log 1/product(pi) = log(productpi)-1 = -log(productpi) = - summation log(pi)
 		# @returns [BigDecimal] The steady state transition probability
-		def S()
+		def M()
 			dimensions = @transitionMatrix.shape()
 			rowDimension = dimensions[0]
 			colDimension = dimensions[1]
