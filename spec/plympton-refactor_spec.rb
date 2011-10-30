@@ -205,6 +205,13 @@ describe "PlymptonRefactor" do
 	it "should correctly calculate probability matrix" do
 		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libFontParser.64.dylib.fz"), "S")
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+		@object.evaluate()
+		@object.initialize_solver("S")
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+		@object.evaluate()
+
+		@object.initialize_solver("S")
+		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
 		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
 		@object.evaluate()
 	end

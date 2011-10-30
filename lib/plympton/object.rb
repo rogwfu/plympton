@@ -9,7 +9,6 @@ module Plympton
 		attr_accessor   :functionHash
 		attr_accessor	:functionHitTrace
 		attr_accessor	:transitionMatrix
-		attr_accessor   :probMatrix
 		attr_accessor	:trace
 
 		# Defines the objects YAML tag
@@ -29,6 +28,12 @@ module Plympton
 			# Create a function hash for lookups
 			init_function_hash()
 
+			# Add in the markov function (any function not defined by a shared library)
+			markovFunction = Plympton::Function.new() 
+			markovFunction.markovIdx = 0
+			markovFunction.numTransitions = BigDecimal("0")
+			@functionHash["-1"] = markovFunction
+
 			# Precompute number of instructions per function and set markovIdx
 			markovIdx = 1
 			@functionList.each do |function|
@@ -38,13 +43,14 @@ module Plympton
 				markovIdx += 1
 			end
 
-			# Allocate transition matrix and probMatrix(# functions + special state 0)
-			# Transition matrix persists probMatrix recalculated
-			dimension = @functionHash.size() + 1
+			# Allocate transition matrix (# functions + special state 0)
+			# Transition matrix persists across test case runs
+#			dimension = @functionHash.size() + 1
+			dimension = @functionHash.size()
 			@transitionMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
-			@probMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
-#			@transitionMatrix = PlymptonMatrix.square(@functionHash.size() + 1)
-#			@probMatrix = PlymptonMatrix.square(@functionHash.size() + 1)
+
+			# Allocate a trace for Markov chains
+			@trace = Array.new()
 		end
 
 		# 
@@ -105,9 +111,18 @@ module Plympton
 			end
 
 			# Calculate the statistic for function path uniqueness
-			pathUniqueness = pathUniqueness + Math.log(probability)
-			pathUniqueness = Math.abs(pathUniqueness)
-		
+			pathUniqueness = BigDecimal("0")
+			@trace.each do |callTrace|
+				traceArr = callTrace.split(":")
+				traceArr[2].to_i.times do
+					pathUniqueness += pMatrix[traceArr[0].to_i(), traceArr[1].to_i()]
+				end
+			end
+
+			puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"
+			pathUniqueness = BigDecimal("1.0")/pathUniqueness.abs()
+			puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"	
+			@trace.clear()
 			return(BigDecimal("0"))
 		end
 

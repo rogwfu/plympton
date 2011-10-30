@@ -54,7 +54,9 @@ module Plympton
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
+				puts "Function offset hit: #{functionOffset}"
 				if(@attributes.functionHash.has_key?(functionOffset)) then
+				puts "Function offset found: #{functionOffset}"
 					if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
 						@attributes.functionHitTrace[functionOffset] = [1] 
 					else
@@ -72,15 +74,15 @@ module Plympton
 								@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + numberOfCalls 
 							end
 
+							puts "Function offset: #{functionOffset} -> #{calleeOffset}"
 							# Increment the number of transitions for a state
-							puts "This is the functionOffset: #{functionOffset}"
-							if(@attributes.functionHash[functionOffset] == nil) then
-								puts "Nil, shouldn't happen: #{functionOffset}"
-							end
 							@attributes.functionHash[functionOffset].numTransitions += BigDecimal("#{numberOfCalls}")
 
 							# Update the transition matrix
 							@attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] = @attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] + BigDecimal("#{numberOfCalls}") 
+
+							# Keep track of call trace and number of times called
+							@attributes.trace << "#{@attributes.functionHash[functionOffset].markovIdx}:#{@attributes.functionHash[calleeOffset].markovIdx}:#{numberOfCalls}"
 						end
 					end # end callee xpath
 				end # end function hash check for hit function
