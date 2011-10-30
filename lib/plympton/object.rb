@@ -123,7 +123,7 @@ module Plympton
 			pathUniqueness = BigDecimal("1.0")/pathUniqueness.abs()
 			puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"	
 			@trace.clear()
-			return(BigDecimal("0"))
+			return(pathUniqueness)
 		end
 
 		# Function to calculate the function coverage of a test case run
