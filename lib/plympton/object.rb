@@ -98,7 +98,6 @@ module Plympton
 			colDimension = dimensions[1]
 			pMatrix = NMatrix.object(rowDimension, colDimension).fill!(BigDecimal("0"))
 
-			# Need to remember Markov state 0!!!!
 			# Calculate the new transition probabilities
 			@functionHash.each_value do |function|
 				rowIdx = function.markovIdx
@@ -115,12 +114,14 @@ module Plympton
 			@trace.each do |callTrace|
 				traceArr = callTrace.split(":")
 				traceArr[2].to_i.times do
-					pathUniqueness += BigMath.log(pMatrix[traceArr[0].to_i(), traceArr[1].to_i()], 6)
+					#pathUniqueness += BigMath.log(pMatrix[traceArr[0].to_i(), traceArr[1].to_i()], 6)
+					pathUniqueness += Math.log(pMatrix[traceArr[0].to_i(), traceArr[1].to_i()].to_f())
 				end
+			#	puts "#{pMatrix[traceArr[0].to_i(), traceArr[1].to_i()].to_f()}"
 			end
 
 			#puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"	
-			pathUniqueness = BigDecimal("1.0")/-pathUniqueness
+			pathUniqueness = BigDecimal(pathUniqueness.abs.to_s())
 			#puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"	
 			@trace.clear()
 			return(pathUniqueness)
