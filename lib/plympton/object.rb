@@ -115,12 +115,14 @@ module Plympton
 			@trace.each do |callTrace|
 				traceArr = callTrace.split(":")
 				traceArr[2].to_i.times do
-					pathUniqueness += pMatrix[traceArr[0].to_i(), traceArr[1].to_i()]
+					pathUniqueness += BigMath.log(pMatrix[traceArr[0].to_i(), traceArr[1].to_i()], 12)
 				end
 			end
 
-			puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"
-			pathUniqueness = BigDecimal("1.0")/pathUniqueness.abs()
+			#puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"
+#			pathUniqueness = BigDecimal("1.0")/pathUniqueness.abs()
+			pathUniqueness = -pathUniqueness
+			puts "PathUniqueness is: #{pathUniqueness.class}"
 			puts "Path Uniqueness is: #{pathUniqueness.to_s("F")}"	
 			@trace.clear()
 			return(pathUniqueness)

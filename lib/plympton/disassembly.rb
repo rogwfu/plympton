@@ -54,9 +54,9 @@ module Plympton
 			# Parse all the function hits 
 			xmlDoc.xpath("//hit").each do |hit|
 				functionOffset = hit.search("offset").first().inner_text()
-				puts "Function offset hit: #{functionOffset}"
+				#puts "Function offset hit: #{functionOffset}"
 				if(@attributes.functionHash.has_key?(functionOffset)) then
-				puts "Function offset found: #{functionOffset}"
+				#puts "Function offset found: #{functionOffset}"
 					if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
 						@attributes.functionHitTrace[functionOffset] = [1] 
 					else
@@ -74,7 +74,7 @@ module Plympton
 								@attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + numberOfCalls 
 							end
 
-							puts "Function offset: #{functionOffset} -> #{calleeOffset}"
+							#puts "Function offset: #{functionOffset} -> #{calleeOffset}"
 							# Increment the number of transitions for a state
 							@attributes.functionHash[functionOffset].numTransitions += BigDecimal("#{numberOfCalls}")
 
