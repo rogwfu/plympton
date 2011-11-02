@@ -88,10 +88,10 @@ atom returns [result]
 			}
 			|		 a=UNMODVAR { 
 						case $a.text 
-							when 'M'
-								$result = @objectCache.send($a.text)
 							when 'R'
 								$result = @objectCache.runtime 
+							when 'U'
+								$result = @objectCache.send($a.text)
 							when 'V'
 								$result = @objectCache.send($a.text)
 							else
@@ -107,7 +107,7 @@ atom returns [result]
 INT		   : (DIGIT)+ ;
 FLOAT	   : INT '.' INT;
 MODVAR	   : 'A'..'G'(MODIFIER); 
-UNMODVAR   : ( 'M' | 'R' | 'V' );
+UNMODVAR   : ( 'R' | 'U' | 'V' );
 WHITESPACE : ( '\t' | ' ' | '\r' | '\n'| '\u000C' )+ { $channel = HIDDEN; };
 
 /*------------------------------------------------------------------

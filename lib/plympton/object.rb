@@ -87,12 +87,11 @@ module Plympton
 			define_sum_avg(variable, attribute)
 		end
 
-		# Stub function for now to calculate the steady state transition probability 
-		# Function to calculate Uniqueness of path taken:
+		# Function to calculate execution path uniqueness:
 		# http://www.cs.ucf.edu/~czou/research/EvolutionaryInputCrafting-ACSAC07.pdf
 		# Had to scale due to overflow: log 1/product(pi) = log(productpi)-1 = -log(productpi) = - summation log(pi)
 		# @return [BigDecimal] The steady state transition probability
-		def M()
+		def U()
 			dimensions = @transitionMatrix.shape()
 			rowDimension = dimensions[0]
 			colDimension = dimensions[1]
