@@ -48,7 +48,7 @@ end
 # Define a set of rspec tests for lldb tracing
 RSpec::Core::RakeTask.new("spec:lldb") do |spec|
     spec.pattern = 'spec/**/*_lldb.rb' 
-    spec.rspec_opts = ['--backtrace']
+    spec.rspec_opts = ['--backtrace', '--fail-fast', '-c']
 end
 
 # Define a rspec testing task for rcov

@@ -44,7 +44,7 @@ module Plympton
                 # @param [String] Path to a lldb trace file
                 def lldb_coverage(lldbTrace)
                   # Open the valgrind xml trace file
-                  xmlFile = File.open(valgrindTrace, "r")
+                  xmlFile = File.open(lldbTrace, "r")
                   xmlDoc = Nokogiri::XML(xmlFile)
 
                   # Delete any previous hit traces
@@ -53,15 +53,8 @@ module Plympton
                   # Parse all the function hits 
                   xmlDoc.xpath("//hit").each do |hit|
                     functionOffset = hit.search("offset").first().inner_text()
-                    functionOffset = hit.search("count").first().inner_text()
-
-                    if(!@attributes.functionHitTrace.has_key?(functionOffset)) then
-                      a = 1
-#                      @attributes.functionHitTrace[functionOffset] = [1] 
-                    else
-                      a = 1
- #                     @attributes.functionHitTrace[functionOffset][0] = @attributes.functionHitTrace[functionOffset][0] + 1 
-                    end
+                    functionHits = hit.search("count").first().inner_text()
+                    @attributes.functionHitTrace[functionOffset] = [functionHits.to_i()] 
                   end
 
                   # FIXME: Add code to handle the markov matrix

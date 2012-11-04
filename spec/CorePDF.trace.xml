@@ -1,0 +1,383 @@
+<?xml version='1.0' encoding='ASCII'?>
+<fuzz.io>
+  <hit>
+    <funcname> CorePDF`-[CPChunk init]</funcname>
+    <offset> 0x00007fff81cf2b5b</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPObject init]</funcname>
+    <offset> 0x00007fff81cf6a85</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPPage setPageCropBox:]</funcname>
+    <offset> 0x00007fff81cf6c4d</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPPage setRotation:]</funcname>
+    <offset> 0x00007fff81cf6f01</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPPage reconstruct]</funcname>
+    <offset> 0x00007fff81cf8281</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPPage initWithPDFPage:]</funcname>
+    <offset> 0x00007fff81cf8488</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPPage init]</funcname>
+    <offset> 0x00007fff81cf84fe</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont cgPDFFont]</funcname>
+    <offset> 0x00007fff81d17487</offset>
+    <count>1</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont ascent]</funcname>
+    <offset> 0x00007fff81d1755e</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont descent]</funcname>
+    <offset> 0x00007fff81d17571</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont loadExternalFontInfoFor:]</funcname>
+    <offset> 0x00007fff81d17664</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont matchingFontName]</funcname>
+    <offset> 0x00007fff81d17901</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont getFontName]</funcname>
+    <offset> 0x00007fff81d17b8a</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont loadEmbeddedFontInfo]</funcname>
+    <offset> 0x00007fff81d17cd3</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFont initWith:]</funcname>
+    <offset> 0x00007fff81d1863b</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`GetArrayValues</funcname>
+    <offset> 0x00007fff81d18ecd</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`primitiveBufferMemoryCheck</funcname>
+    <offset> 0x00007fff81d1a12e</offset>
+    <count>16</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextAddShape</funcname>
+    <offset> 0x00007fff81d1a49d</offset>
+    <count>6</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_BT</funcname>
+    <offset> 0x00007fff81d1bff4</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_cm</funcname>
+    <offset> 0x00007fff81d1c1ff</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_cs</funcname>
+    <offset> 0x00007fff81d1c2e0</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_f</funcname>
+    <offset> 0x00007fff81d1cb9a</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_i</funcname>
+    <offset> 0x00007fff81d1cf82</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_n</funcname>
+    <offset> 0x00007fff81d1d31a</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_q</funcname>
+    <offset> 0x00007fff81d1d351</offset>
+    <count>6</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_Q</funcname>
+    <offset> 0x00007fff81d1d35e</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_re</funcname>
+    <offset> 0x00007fff81d1d36b</offset>
+    <count>6</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_sc</funcname>
+    <offset> 0x00007fff81d1d6c8</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_Tf</funcname>
+    <offset> 0x00007fff81d1dc9d</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_Tj</funcname>
+    <offset> 0x00007fff81d1dd3f</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_Tm</funcname>
+    <offset> 0x00007fff81d1de67</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`op_W</funcname>
+    <offset> 0x00007fff81d1e27d</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`cs_common</funcname>
+    <offset> 0x00007fff81d1e411</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`Find</funcname>
+    <offset> 0x00007fff81d1fa10</offset>
+    <count>7</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo readByte]</funcname>
+    <offset> 0x00007fff81d332e2</offset>
+    <count>176</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo readUnsignedLong]</funcname>
+    <offset> 0x00007fff81d33321</offset>
+    <count>44</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo readLong]</funcname>
+    <offset> 0x00007fff81d3339c</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo readFloat]</funcname>
+    <offset> 0x00007fff81d333ad</offset>
+    <count>40</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo readRect]</funcname>
+    <offset> 0x00007fff81d333c3</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo kernUnitsPerEm]</funcname>
+    <offset> 0x00007fff81d33455</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo initWithFontData:]</funcname>
+    <offset> 0x00007fff81d334a3</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo dispose]</funcname>
+    <offset> 0x00007fff81d33542</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo getDescriptor:]</funcname>
+    <offset> 0x00007fff81d33600</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`-[CPFontInfo dealloc]</funcname>
+    <offset> 0x00007fff81d3384c</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`AddPdfOperators</funcname>
+    <offset> 0x00007fff81d1b9f9</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CGPDFPageGetLayout</funcname>
+    <offset> 0x00007fff81d3b55f</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPFontEnumeratorCreate</funcname>
+    <offset> 0x00007fff81d186cd</offset>
+    <count>1</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPFontEnumeratorNextCode</funcname>
+    <offset> 0x00007fff81d188c1</offset>
+    <count>12</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFClipBufferAddClip</funcname>
+    <offset> 0x00007fff81d18bfd</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFClipBufferGetCurrentClip</funcname>
+    <offset> 0x00007fff81d18b27</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFClipBufferInit</funcname>
+    <offset> 0x00007fff81d18ad7</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFClipBufferPush</funcname>
+    <offset> 0x00007fff81d18c32</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextAddCharacter</funcname>
+    <offset> 0x00007fff81d1a1ce</offset>
+    <count>11</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextAddClip</funcname>
+    <offset> 0x00007fff81d1ab02</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextAddFill</funcname>
+    <offset> 0x00007fff81d1ab75</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextAddPathToClip</funcname>
+    <offset> 0x00007fff81d1aa8b</offset>
+    <count>8</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextConcatCTM</funcname>
+    <offset> 0x00007fff81d1abe3</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextCreate</funcname>
+    <offset> 0x00007fff81d1af31</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextGetCPFont</funcname>
+    <offset> 0x00007fff81d19eb2</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextGetColorSpace</funcname>
+    <offset> 0x00007fff81d19e4e</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextRestoreGState</funcname>
+    <offset> 0x00007fff81d1acad</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextSaveGState</funcname>
+    <offset> 0x00007fff81d1ad32</offset>
+    <count>8</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFContextSaveInitialGState</funcname>
+    <offset> 0x00007fff81d1adbc</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFGraphicStateCreate</funcname>
+    <offset> 0x00007fff81d1b4de</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFGraphicStateReleaseElements</funcname>
+    <offset> 0x00007fff81d1b731</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFGraphicStateRetainElements</funcname>
+    <offset> 0x00007fff81d1b79e</offset>
+    <count>8</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFGraphicStateSetFont</funcname>
+    <offset> 0x00007fff81d1b6c2</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPPDFStyleListGetStyle</funcname>
+    <offset> 0x00007fff81d1fc9a</offset>
+    <count>5</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPRotationDegreesFromTransform</funcname>
+    <offset> 0x00007fff81d083c5</offset>
+    <count>11</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CPScaleFromTransform</funcname>
+    <offset> 0x00007fff81d08561</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CreateColorSpaceFromName</funcname>
+    <offset> 0x00007fff81d18e4c</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`CreateColorSpaceFromObject</funcname>
+    <offset> 0x00007fff81d18f46</offset>
+    <count>3</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`ParsePDF</funcname>
+    <offset> 0x00007fff81d1e498</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`SetColor</funcname>
+    <offset> 0x00007fff81d1f063</offset>
+    <count>4</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`ShowText</funcname>
+    <offset> 0x00007fff81d1e649</offset>
+    <count>2</count>
+  </hit>
+  <hit>
+    <funcname> CorePDF`populate</funcname>
+    <offset> 0x00007fff81cf1af4</offset>
+    <count>2</count>
+  </hit>
+</fuzz.io>
