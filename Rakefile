@@ -26,6 +26,12 @@ Jeweler::Tasks.new do |gem|
   gem.add_dependency('nokogiri', '= 1.5.0') 
   gem.add_dependency('antlr3', '= 1.8.12') 
   gem.add_dependency('narray', '>= 0.5.9')
+  gem.add_dependency('bigdecimal', '>=1.1.0')
+
+  gem.add_development_dependency('jeweler', '>=1.8.4')
+  gem.add_development_dependency('rspec', '>=2.11.0')
+  gem.add_development_dependency('yard', '>=0.8.3')
+
 end
 
 
@@ -33,16 +39,25 @@ Jeweler::RubygemsDotOrgTasks.new
 
 require 'rspec/core'
 require 'rspec/core/rake_task'
-RSpec::Core::RakeTask.new(:spec) do |spec|
+
+# Define a rspec testing task for the function solver
+RSpec::Core::RakeTask.new("spec:func") do |spec|
   spec.pattern = FileList['spec/**/*_spec.rb']
 end
 
-RSpec::Core::RakeTask.new(:rcov) do |spec|
-  spec.pattern = 'spec/**/*_spec.rb'
+# Define a set of rspec tests for lldb tracing
+RSpec::Core::RakeTask.new("spec:lldb") do |spec|
+    spec.pattern = 'spec/**/*_lldb.rb' 
+    spec.rspec_opts = ['--backtrace']
+end
+
+# Define a rspec testing task for rcov
+RSpec::Core::RakeTask.new("spec:rcov") do |spec|
+  spec.pattern = 'spec/**/*_rcov.rb'
   spec.rcov = true
 end
 
-task :default => :spec
+task :default => "spec:lldb"
 
 #require 'rake/rdoctask'
 require 'rdoc/task'
