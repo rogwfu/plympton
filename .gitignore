@@ -49,3 +49,6 @@ Gemfile.lock
 
 # For rubinius:
 #*.rbc
+
+# For Python
+*.pyc
