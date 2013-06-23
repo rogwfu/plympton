@@ -1,4 +1,7 @@
-Bundler.require(:default)
+require 'nokogiri'
+require 'antlr3'
+require 'narray'
+require 'bigdecimal'
 require 'yaml'
 require 'bigdecimal/math'
 
