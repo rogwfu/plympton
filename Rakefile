@@ -1,17 +1,7 @@
 # encoding: utf-8
-
-#require 'rubygems'
-#require 'bundler'
-#begin
-#  Bundler.setup(:default, :development)
-#rescue Bundler::BundlerError => e
-#  $stderr.puts e.message
-#  $stderr.puts "Run `bundle install` to install missing gems"
-#  exit e.status_code
-#end
 require 'rake'
-
 require 'jeweler'
+
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
   gem.name = "plympton-refactor"
@@ -22,10 +12,6 @@ Jeweler::Tasks.new do |gem|
   gem.email = "roger.seagle@gmail.com"
   gem.authors = ["Roger Seagle"]
   gem.required_ruby_version = '>= 1.9.3'
-  # dependencies defined in Gemfile
-  gem.add_dependency('nokogiri', '= 1.5.0') 
-  gem.add_dependency('antlr3', '= 1.8.12') 
-  gem.add_dependency('narray', '>= 0.5.9')
 end
 
 
