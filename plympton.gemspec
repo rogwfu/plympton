@@ -22,6 +22,7 @@ Gem::Specification.new do |s|
   s.files = [
     ".document",
     ".rspec",
+    ".travis.yml",
     "Gemfile",
     "LICENSE.txt",
     "README.rdoc",
@@ -42,6 +43,7 @@ Gem::Specification.new do |s|
     "lib/plympton/matrix.rb",
     "lib/plympton/object.rb",
     "lib/plympton/solver.g",
+    "plympton.gemspec",
     "spec/libFontParser.64.dylib.fz",
     "spec/libauto.dylib.fz",
     "spec/plympton_spec.rb",
@@ -66,7 +68,7 @@ Gem::Specification.new do |s|
       s.add_development_dependency(%q<jeweler>, ["~> 2.0"])
       s.add_development_dependency(%q<yard>, ["~> 0.8"])
       s.add_development_dependency(%q<rspec>, ["~> 3.1"])
-      s.add_development_dependency(%q<bundler>, ["~> 1.7"])
+      s.add_development_dependency(%q<bundler>, [">= 1.0"])
     else
       s.add_dependency(%q<nokogiri>, ["~> 1.6"])
       s.add_dependency(%q<antlr3>, ["~> 1.10"])
@@ -74,7 +76,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<jeweler>, ["~> 2.0"])
       s.add_dependency(%q<yard>, ["~> 0.8"])
       s.add_dependency(%q<rspec>, ["~> 3.1"])
-      s.add_dependency(%q<bundler>, ["~> 1.7"])
+      s.add_dependency(%q<bundler>, [">= 1.0"])
     end
   else
     s.add_dependency(%q<nokogiri>, ["~> 1.6"])
@@ -83,7 +85,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<jeweler>, ["~> 2.0"])
     s.add_dependency(%q<yard>, ["~> 0.8"])
     s.add_dependency(%q<rspec>, ["~> 3.1"])
-    s.add_dependency(%q<bundler>, ["~> 1.7"])
+    s.add_dependency(%q<bundler>, [">= 1.0"])
   end
 end
 

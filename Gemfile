@@ -6,7 +6,7 @@ group :development do
    gem "jeweler", "~> 2.0"
    gem "yard", "~> 0.8"
    gem "rspec", "~> 3.1"
-   gem "bundler", "~> 1.7"
+   gem "bundler", ">= 1.0"
 end
 
 gem 'nokogiri', '~> 1.6'
