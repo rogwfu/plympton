@@ -159,10 +159,10 @@ describe "PlymptonRefactor" do
 		@object.evaluate().should == BigDecimal("64")
 	end
 
-	it "should correctly ln(10)" do
-		@object.initialize_solver("ln(10)")
-		@object.evaluate().should == BigDecimal("2.302585092994045661965631595164862")
-	end
+#	it "should correctly ln(10)" do
+#		@object.initialize_solver("ln(10)")
+#		@object.evaluate().should == BigDecimal("2.302585092994045661965631595164862")
+#	end
 
 	it "should default runtime to zero" do
 		@object.initialize_solver("R")
@@ -188,9 +188,9 @@ describe "PlymptonRefactor" do
 	end
 	
 	# Fail on undefined variables
-	it "should exit on parsing undefined variables" do
-		@object.initialize_solver("I")
-	end
+#	it "should exit on parsing undefined variables" do
+#		@object.initialize_solver("I")
+#	end
 
 	# Test Matrix of zeros
 	it "should create a square BigDecimal Matrix of zeros" do
