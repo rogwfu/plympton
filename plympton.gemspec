@@ -17,15 +17,16 @@ Gem::Specification.new do |s|
   s.executables = ["func-auto.py", "func.py", "func.py.new", "idascript.py"]
   s.extra_rdoc_files = [
     "LICENSE.txt",
-    "README.rdoc"
+    "README.md"
   ]
   s.files = [
+    ".coveralls.yml",
     ".document",
     ".rspec",
     ".travis.yml",
     "Gemfile",
     "LICENSE.txt",
-    "README.rdoc",
+    "README.md",
     "Rakefile",
     "VERSION",
     "bin/func-auto.py",
@@ -65,6 +66,7 @@ Gem::Specification.new do |s|
       s.add_runtime_dependency(%q<nokogiri>, ["~> 1.6"])
       s.add_runtime_dependency(%q<antlr3>, ["~> 1.10"])
       s.add_runtime_dependency(%q<narray>, ["~> 0.6"])
+      s.add_runtime_dependency(%q<coveralls>, [">= 0"])
       s.add_development_dependency(%q<jeweler>, ["~> 2.0"])
       s.add_development_dependency(%q<yard>, ["~> 0.8"])
       s.add_development_dependency(%q<rspec>, ["~> 3.1"])
@@ -73,6 +75,7 @@ Gem::Specification.new do |s|
       s.add_dependency(%q<nokogiri>, ["~> 1.6"])
       s.add_dependency(%q<antlr3>, ["~> 1.10"])
       s.add_dependency(%q<narray>, ["~> 0.6"])
+      s.add_dependency(%q<coveralls>, [">= 0"])
       s.add_dependency(%q<jeweler>, ["~> 2.0"])
       s.add_dependency(%q<yard>, ["~> 0.8"])
       s.add_dependency(%q<rspec>, ["~> 3.1"])
@@ -82,6 +85,7 @@ Gem::Specification.new do |s|
     s.add_dependency(%q<nokogiri>, ["~> 1.6"])
     s.add_dependency(%q<antlr3>, ["~> 1.10"])
     s.add_dependency(%q<narray>, ["~> 0.6"])
+    s.add_dependency(%q<coveralls>, [">= 0"])
     s.add_dependency(%q<jeweler>, ["~> 2.0"])
     s.add_dependency(%q<yard>, ["~> 0.8"])
     s.add_dependency(%q<rspec>, ["~> 3.1"])
