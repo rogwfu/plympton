@@ -5,7 +5,7 @@ A gem to read program disassembly from a YAML dump.  The YAML dump is generated 
 ## Status
 [![Build Status](https://travis-ci.org/rogwfu/plympton.png)](https://travis-ci.org/rogwfu/plympton)
 [![Coverage Status](https://coveralls.io/repos/rogwfu/plympton/badge.png)](https://coveralls.io/r/rogwfu/plympton)
-[![Dependency Status](https://www.versioneye.com/ruby/plympton/1.1.0/badge.png)](https://www.versioneye.com/ruby/plympton/1.1.0)
+[![Dependency Status](https://www.versioneye.com/user/projects/5435dad0b2a9c5c97600011c/badge.svg?style=flat)](https://www.versioneye.com/user/projects/5435dad0b2a9c5c97600011c)
 
 ## Contributing to plympton
  
