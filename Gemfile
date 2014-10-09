@@ -12,3 +12,4 @@ end
 gem 'nokogiri', '~> 1.6'
 gem 'antlr3', '~> 1.10'
 gem 'narray', '~> 0.6'
+gem 'coveralls', require: false
