@@ -1,8 +1,8 @@
-= plympton-refactor
+= plympton
 
-Description goes here.
+A gem to read program disassembly from a YAML dump.  The YAML dump is generated from an IDA Pro python script.  This script is included along with this Gem (func.py)
 
-== Contributing to plympton-refactor
+== Contributing to plympton
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
 * Check out the issue tracker to make sure someone already hasn't requested it and/or contributed it
@@ -14,6 +14,6 @@ Description goes here.
 
 == Copyright
 
-Copyright (c) 2011 rogwfu. See LICENSE.txt for
+Copyright (c) 2014 Roger Seagle. See LICENSE.txt for
 further details.
 

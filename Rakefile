@@ -4,8 +4,8 @@ require 'jeweler'
 
 Jeweler::Tasks.new do |gem|
   # gem is a Gem::Specification... see http://docs.rubygems.org/read/chapter/20 for more options
-  gem.name = "plympton-refactor"
-  gem.homepage = "http://github.com/rogwfu/plympton-refactor"
+  gem.name = "plympton"
+  gem.homepage = "http://github.com/rogwfu/plympton"
   gem.license = "MIT"
   gem.summary = %Q{Reads a YAML dump of a program's disassembly from IDA Pro}
   gem.description = %Q{A Gem to read program disassembly from a YAML dump.  The YAML dump is generated from an ida pro python script.  This script is included along with this Gem (func.py)}
@@ -36,7 +36,7 @@ Rake::RDocTask.new do |rdoc|
   version = File.exist?('VERSION') ? File.read('VERSION') : ""
 
   rdoc.rdoc_dir = 'rdoc'
-  rdoc.title = "plympton-refactor #{version}"
+  rdoc.title = "plympton #{version}"
   rdoc.rdoc_files.include('README*')
   rdoc.rdoc_files.include('lib/**/*.rb')
 end
