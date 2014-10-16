@@ -7,6 +7,15 @@ A gem to read program disassembly from a YAML dump.  The YAML dump is generated 
 [![Coverage Status](https://coveralls.io/repos/rogwfu/plympton/badge.png)](https://coveralls.io/r/rogwfu/plympton)
 [![Dependency Status](https://www.versioneye.com/user/projects/543603aab2a9c5dd3d000092/badge.svg?style=flat)](https://www.versioneye.com/user/projects/543603aab2a9c5dd3d000092)
 
+## Dependencies
+
+The IDA Python auto analysis script requires YAML for serializing program information.  To install:
+
+### Mac OS X
+```bash
+sudo /usr/bin/easy_install-2.6 pyyaml
+```
+
 ## Contributing to plympton
  
 * Check out the latest master to make sure the feature hasn't been implemented or the bug hasn't been fixed yet
