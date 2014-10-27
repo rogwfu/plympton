@@ -11,7 +11,7 @@ Gem::Specification.new do |s|
   s.required_rubygems_version = Gem::Requirement.new(">= 0") if s.respond_to? :required_rubygems_version=
   s.require_paths = ["lib"]
   s.authors = ["Roger Seagle"]
-  s.date = "2014-10-09"
+  s.date = "2014-10-27"
   s.description = "A Gem to read program disassembly from a YAML dump.  The YAML dump is generated from an ida pro python script.  This script is included along with this Gem (func.py)"
   s.email = "roger.seagle@gmail.com"
   s.executables = ["func-auto.py", "func.py", "func.py.new", "idascript.py"]

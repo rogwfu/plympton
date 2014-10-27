@@ -415,8 +415,8 @@ yamlFile = open(yamlFilename, 'w')
 
 # Get the start and end of the text section (__text Mac, .text Linux)
 textSegmentSelector = SegByName(".text")
-#if textSegmentSelector == BADADDR:
-#	textSegmentSelector = SegByName(".text")
+if textSegmentSelector == BADADDR:
+	textSegmentSelector = SegByName("__text")
 
 textSegmentStart = SegByBase(textSegmentSelector)
 textSegmentEnd = SegEnd(textSegmentStart)

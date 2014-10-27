@@ -47,7 +47,7 @@ module Plympton
 			# Transition matrix persists across test case runs
 #			dimension = @functionHash.size() + 1
 			dimension = @functionHash.size()
-			@transitionMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
+#			@transitionMatrix = NMatrix.object(dimension, dimension).fill!(BigDecimal("0"))
 
 			# Allocate a trace for Markov chains
 			@trace = Array.new()

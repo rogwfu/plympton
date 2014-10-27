@@ -79,7 +79,7 @@ module Plympton
 							@attributes.functionHash[functionOffset].numTransitions += BigDecimal("#{numberOfCalls}")
 
 							# Update the transition matrix
-							@attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] = @attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] + BigDecimal("#{numberOfCalls}") 
+#							@attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] = @attributes.transitionMatrix[@attributes.functionHash[functionOffset].markovIdx, @attributes.functionHash[calleeOffset].markovIdx] + BigDecimal("#{numberOfCalls}") 
 
 							# Keep track of call trace and number of times called
 							@attributes.trace << "#{@attributes.functionHash[functionOffset].markovIdx}:#{@attributes.functionHash[calleeOffset].markovIdx}:#{numberOfCalls}"
