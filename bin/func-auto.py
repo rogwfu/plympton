@@ -414,9 +414,9 @@ yamlFilename  = os.environ['PWD'] + "/" + GetInputFile() + ".fz"
 yamlFile = open(yamlFilename, 'w')
 
 # Get the start and end of the text section (__text Mac, .text Linux)
-textSegmentSelector = SegByName("__text")
-if textSegmentSelector == BADADDR:
-	textSegmentSelector = SegByName(".text")
+textSegmentSelector = SegByName(".text")
+#if textSegmentSelector == BADADDR:
+#	textSegmentSelector = SegByName(".text")
 
 textSegmentStart = SegByBase(textSegmentSelector)
 textSegmentEnd = SegEnd(textSegmentStart)
