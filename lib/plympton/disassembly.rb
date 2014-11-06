@@ -40,6 +40,29 @@ module Plympton
 			return(result)
 		end
 
+		# Function to process hit tracing recorded by lldb 
+		# @param [String] Path to a lldb trace file
+		def lldb_coverage(lldbTrace)
+		  # Open the valgrind xml trace file
+		  xmlFile = File.open(lldbTrace, "r")
+		  xmlDoc = Nokogiri::XML(xmlFile)
+
+		  # Delete any previous hit traces
+		  @attributes.functionHitTrace.clear()
+
+		  # Parse all the function hits 
+		  xmlDoc.xpath("//hit").each do |hit|
+			functionOffset = hit.search("offset").first().inner_text()
+			functionHits = hit.search("count").first().inner_text()
+			@attributes.functionHitTrace[functionOffset] = [functionHits.to_i()] 
+		  end
+
+		  # FIXME: Add code to handle the markov matrix
+
+		  # Cleanup open file
+		  xmlFile.close()
+		end
+
 		# Function to process hit tracing recorded by Valgrind tools (rufus and callgrind)
 		# @param [String] Path to a valgrind trace file
 		def valgrind_coverage(valgrindTrace)
