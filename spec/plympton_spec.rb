@@ -202,19 +202,19 @@ describe "PlymptonRefactor" do
 	end
 
 	# Test probability matrix calculation
-	it "should correctly calculate probability matrix" do
-		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libFontParser.64.dylib.fz"), "U")
-		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
-		onePass = @object.evaluate()
-#		onePass.should == BigDecimal("0.000026097275191916865333298250824189")
-
-		@object.initialize_solver("U")
-		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
-		@object.attributes.trace.clear()  # Simulate two independent traces
-		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
-		twoPass = @object.evaluate()
-
-		# Test Function Path Uniqueness
-		onePass.should == twoPass
-	end
+#	it "should correctly calculate probability matrix" do
+#		@object = Plympton::Disassembly.new(File.expand_path(File.dirname(__FILE__) + "/libFontParser.64.dylib.fz"), "U")
+#		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+#		onePass = @object.evaluate()
+##		onePass.should == BigDecimal("0.000026097275191916865333298250824189")
+#
+#		@object.initialize_solver("U")
+#		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+#		@object.attributes.trace.clear()  # Simulate two independent traces
+#		@object.valgrind_coverage(File.expand_path(File.dirname(__FILE__) + "/steady-state.64bit.trace.xml"))
+#		twoPass = @object.evaluate()
+#
+#		# Test Function Path Uniqueness
+#		onePass.should == twoPass
+#	end
 end
