@@ -140,7 +140,9 @@ module Plympton
 		def init_function_hash()
 			@functionHash = Hash.new()
 			@functionList.each do |function|
-				@functionHash[function.startAddress] = function
+#				@functionHash[function.startAddress] = function
+			    # Weird serialization issue to fix, for now quick patch
+				@functionHash[function.startAddress.gsub("L", "")] = function
 			end
 		end
 
